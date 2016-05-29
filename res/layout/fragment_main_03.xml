@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ebebeb"
+              android:orientation="vertical" >
+
+    <RelativeLayout
+            android:id="@+id/re_personal_info"
+            android:layout_width="fill_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp" >
+
+        <ImageView
+                android:id="@+id/iv_personal_info"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ic_launcher" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_personal_info"
+                android:text="个人信息"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:background="#dadada" />
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/re_setting"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp" >
+
+        <ImageView
+                android:id="@+id/iv_setting"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ic_launcher" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_setting"
+                android:text="设置"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:background="#dadada" />
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/re_pay_history"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp" >
+
+        <ImageView
+                android:id="@+id/iv_pay_history"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ic_launcher" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_pay_history"
+                android:text="支付记录"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:background="#dadada" />
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/re_bind_hard"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp" >
+
+        <ImageView
+                android:id="@+id/iv_bind_hard"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ic_launcher" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_bind_hard"
+                android:text="硬件绑定"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:background="#dadada" />
+    </RelativeLayout>
+    <RelativeLayout
+            android:id="@+id/re_health_report"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp" >
+
+        <ImageView
+                android:id="@+id/iv_health_report"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ic_launcher" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_health_report"
+                android:text="健康报告"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:background="#dadada" />
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/re_manger_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp" >
+
+        <ImageView
+                android:id="@+id/iv_manger_doctor"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/ic_launcher" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/iv_manger_doctor"
+                android:text="医生管理"
+                android:textColor="#353535"
+                android:textSize="16sp" />
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:background="#dadada" />
+    </RelativeLayout>
+</LinearLayout>
