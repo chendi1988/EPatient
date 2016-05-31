@@ -1,6 +1,8 @@
 package com.example11.myapp;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
@@ -26,14 +28,16 @@ public class LoginActivity extends Activity {
 
     Button login;
 
+    Button register;
+
     boolean showpwd = false;
 
-
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_layout);
-
+        context = this;
         initView();
     }
 
@@ -50,6 +54,8 @@ public class LoginActivity extends Activity {
         bt_pwd_eye = (Button) findViewById(R.id.bt_pwd_eye);
         bt_pwd_clear = (Button) findViewById(R.id.bt_pwd_clear);
 
+        register = (Button) findViewById(R.id.register);
+
         bindOnClick();
     }
 
@@ -59,6 +65,9 @@ public class LoginActivity extends Activity {
         bt_pwd_eye.setOnClickListener(onClick);
         bt_pwd_clear.setOnClickListener(onClick);
 
+        login.setOnClickListener(onClick);
+
+        register.setOnClickListener(onClick);
     }
 
     View.OnClickListener onClick = new View.OnClickListener() {
@@ -103,6 +112,27 @@ public class LoginActivity extends Activity {
                     showpwd = false;
 
                     break;
+
+                case R.id.login:
+
+                    Intent intent = new Intent();
+                    intent.setClass(context,MainActivity.class);
+                    context.startActivity(intent);
+                    finish();
+
+                    break;
+                case R.id.register:
+
+                    Intent intent1 = new Intent();
+                    intent1.setClass(context,registerActivity.class);
+                    context.startActivity(intent1);
+                    finish();
+
+                    break;
+
+
+                default:
+                    break;
             }
         }
     };
@@ -135,6 +165,8 @@ public class LoginActivity extends Activity {
 
             if (et_username.getText().length() > 10 && et_pwd.getText().length() > 6) {
                 login.setEnabled(true);
+            } else {
+                login.setEnabled(false);
             }
 
         }
