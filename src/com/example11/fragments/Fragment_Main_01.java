@@ -10,7 +10,7 @@ import com.example11.myapp.R;
 public class Fragment_Main_01 extends Fragment{
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {		
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 		return inflater.inflate(R.layout.fragment_main_01, null);
 	}	
 }

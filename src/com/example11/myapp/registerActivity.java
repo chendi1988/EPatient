@@ -45,7 +45,7 @@ public class registerActivity extends Activity {
                     rg_identify_bt.setText(""+ num + "s后重新发送");
                     if(num < 0){
                         stopTimer();
-                        num = 59;
+                        num = 60;
                         rg_identify_bt.setEnabled(true);
                         rg_identify_bt.setText("重新发送");
 
@@ -205,7 +205,7 @@ public class registerActivity extends Activity {
             };
         }
 
-        timer.schedule(tTask,1000);
+        timer.schedule(tTask,0,1000);
 
     }
 
@@ -220,6 +220,6 @@ public class registerActivity extends Activity {
         }
     }
 
-    public int num = 59;
+    public int num = 60;
 
 }
