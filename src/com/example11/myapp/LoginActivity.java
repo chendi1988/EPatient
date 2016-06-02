@@ -3,6 +3,7 @@ package com.example11.myapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Selection;
@@ -13,6 +14,13 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+import com.example11.utils.HttpPostUtil;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example11.utils.Contant.url_login;
 
 /**
  * Created by chendi on 2016/5/29.
@@ -115,10 +123,7 @@ public class LoginActivity extends Activity {
 
                 case R.id.login:
 
-                    Intent intent = new Intent();
-                    intent.setClass(context,MainActivity.class);
-                    context.startActivity(intent);
-                    finish();
+                    new LoginTask().execute();
 
                     break;
                 case R.id.register:
@@ -175,6 +180,55 @@ public class LoginActivity extends Activity {
         public void afterTextChanged(Editable s) {
 
         }
+    }
+
+
+    class LoginTask extends AsyncTask<Void,Void,Map<String,Object>>{
+        Map<String, Object> map;
+        public LoginTask(){
+
+            map = new HashMap<String, Object>();
+            map.put("Tel",et_username.getText());
+            map.put("Pwd",et_pwd.getText());
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Map<String, Object> doInBackground(Void... params) {
+            return HttpPostUtil.getPostJsonResult(url_login,map);
+        }
+
+        @Override
+        protected void onPostExecute(Map<String, Object> result) {
+            super.onPostExecute(result);
+            if(!result.get("result").equals("null")){
+                if(result.get("result").equals("1")){
+                    showToast("账号不存在");
+                }else  if(result.get("result").equals("2")){
+                    showToast("密码错误");
+                }else  if(result.get("result").equals("-1")){
+                    showToast("系统出错，请重试");
+                }else{
+                    showToast("登录成功");
+                    Intent intent = new Intent();
+                    intent.setClass(context,MainActivity.class);
+                    context.startActivity(intent);
+                    finish();
+                }
+
+            }else{
+                showToast(result.get("err").toString());
+            }
+        }
+    }
+
+    public void showToast(String msg){
+        Toast.makeText(context,msg.toString(),Toast.LENGTH_SHORT).show();
     }
 
 }
