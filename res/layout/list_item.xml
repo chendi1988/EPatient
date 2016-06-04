@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="90dp"
+        android:layout_width="match_parent"
+        android:background="#666666"
+        android:gravity="center_vertical">
+    
+        <ImageView
+                android:id="@+id/img_header"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_launcher"/>
+        <LinearLayout
+                android:layout_toRightOf="@id/img_header"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
+                        android:singleLine="true"
+                        android:textColor="#000000"
+                        android:gravity="center_vertical|left"
+                        android:textSize="15sp"
+                        android:ellipsize="end"
+                        android:maxEms="18"
+                        android:layout_marginRight="20dp"
+                        android:text="djfl;sakjgla;s将拉开圣诞节"
+                        />
+                <TextView
+                        android:id="@+id/descption"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="#50000000"
+                        android:textSize="15sp"
+                        android:lines="2"
+                        android:ellipsize="end"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="20dp"
+                        android:text="djfl;sakjgla;s将拉开圣诞节分厘卡似的个撒法时间返了个扩大解放了角度来看是分厘卡时间山东会计法律是苦尽甘来发生卡的ask理解的立法"
+                        />
+
+        </LinearLayout>
+
+
+</RelativeLayout>

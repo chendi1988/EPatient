@@ -2,7 +2,7 @@ package com.example11.myapp;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,9 +15,16 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+import com.example11.utils.CheckFormatUtil;
+import com.example11.utils.HttpPostUtil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static com.example11.utils.Contant.*;
 
 public class registerActivity extends Activity {
 
@@ -81,6 +88,7 @@ public class registerActivity extends Activity {
         rg_pwd_eye = (Button) findViewById(R.id.rg_pwd_eye);
 
         rg_identify = (EditText) findViewById(R.id.rg_identify);
+        rg_identify.addTextChangedListener(new EditChangedListener());
 
         bindOnClick();
     }
@@ -128,16 +136,29 @@ public class registerActivity extends Activity {
 
                 case R.id.register:
 
-                    Intent intent = new Intent();
-                    intent.setClass(context,MainActivity.class);
-                    context.startActivity(intent);
-                    finish();
+//                    Intent intent = new Intent();
+//                    intent.setClass(context,MainActivity.class);
+//                    context.startActivity(intent);
+//                    finish();
+
+                    if(CheckFormatUtil.isPhoneNum(rg_username.getText().toString().trim())){
+                        Toast.makeText(context,"请输入正确格式的手机号码",Toast.LENGTH_SHORT).show();
+                    }else{
+                        new RegisteTask(rg_username.getText().toString().trim(),rg_identify.getText().toString().trim(),rg_pwd.getText().toString().trim()).execute();
+                    }
 
                     break;
 
                 case R.id.rg_identify_bt:
-                    rg_identify_bt.setEnabled(false);
-                    startTimer();
+
+                    if(CheckFormatUtil.isPhoneNum(rg_username.getText().toString().trim())){
+                        Toast.makeText(context,"请输入正确格式的手机号码",Toast.LENGTH_SHORT).show();
+                    }else{
+                        rg_identify_bt.setEnabled(false);
+                        startTimer();
+                        new RequestIdentify(rg_username.getText().toString().trim()).execute();
+                    }
+
                     break;
                 default:
                     break;
@@ -169,7 +190,7 @@ public class registerActivity extends Activity {
                 rg_pwd_eye.setVisibility(View.INVISIBLE);
             }
 
-            if (rg_username.getText().length() > 10 && rg_pwd.getText().length() > 6 && rg_identify.getText().length() > 5) {
+            if (rg_username.getText().length() > 10 && rg_pwd.getText().length() > 5 && rg_identify.getText().length() > 5) {
                 register.setEnabled(true);
             } else {
                 register.setEnabled(false);
@@ -221,5 +242,65 @@ public class registerActivity extends Activity {
     }
 
     public int num = 60;
+
+    class RequestIdentify extends AsyncTask<Void,Void,Map<String, Object>>{
+
+        Map<String, Object> map;
+        public RequestIdentify(String phone){
+            map = new HashMap<String, Object>();
+            map.put("telephone",phone);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Map<String, Object> doInBackground(Void... params) {
+            return HttpPostUtil.getPostJsonResult(URL_SEND_IFYCODE,map,ACTION_IDENTIFY);
+        }
+
+        @Override
+        protected void onPostExecute(Map<String, Object> s) {
+            super.onPostExecute(s);
+
+            map.clear();
+            map = null;
+
+        }
+    }
+
+
+    class RegisteTask extends AsyncTask<Void,Void,Map<String, Object>>{
+        Map<String, Object> map;
+        public RegisteTask(String phone,String identify,String pwd){
+
+            map = new HashMap<String, Object>();
+            map.put("phone",phone);
+            map.put("password",pwd);
+            map.put("identify",identify);
+        }
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Map<String, Object> doInBackground(Void... params) {
+            return HttpPostUtil.getPostJsonResult(URL_REGISTER,map,ACTION_REGISTER);
+        }
+
+        @Override
+        protected void onPostExecute(Map<String, Object> aVoid) {
+            super.onPostExecute(aVoid);
+
+            map.clear();
+            map = null;
+        }
+    }
+
 
 }

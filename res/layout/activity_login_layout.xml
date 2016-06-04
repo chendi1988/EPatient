@@ -27,16 +27,17 @@
                     android:paddingRight="60dp"
                     android:background="@drawable/login_edite_style"
                     android:hint="手机号码"
+                    android:text="181111111111"
                     android:textColorHint="#666666"
                     android:maxLength="11"
-                    android:paddingLeft="60dp">
+                    android:paddingLeft="50dp">
             </EditText>
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:layout_gravity="left|center_vertical"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/icon_username" />
             <Button
                     android:id="@+id/bt_username_clear"
                     android:layout_width="20dp"
@@ -63,32 +64,24 @@
                     android:paddingRight="60dp"
                     android:background="@drawable/login_edite_style"
                     android:hint="密码"
+                    android:text="asjdhkadfhkdjhfkd"
                     android:textColorHint="#666666"
                     android:maxLength="11"
-                    android:paddingLeft="60dp">
+                    android:paddingLeft="50dp">
              </EditText>
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:layout_gravity="left|center_vertical"
-                    android:background="@drawable/ic_launcher" />
-            <Button
-                    android:id="@+id/bt_pwd_clear"
-                    android:layout_width="23dp"
-                    android:layout_height="23dp"
-                    android:background="@drawable/editor_clear_layout"
-                    android:visibility="invisible"
-                    android:layout_gravity="right|center_vertical"
-                    android:layout_marginRight="10dp"
-            />
+                    android:background="@drawable/icon_password" />
             <Button
                     android:id="@+id/bt_pwd_eye"
                     android:layout_width="23dp"
                     android:layout_height="23dp"
                     android:background="@drawable/agt"
                     android:layout_gravity="right|center_vertical"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginRight="10dp"
                     android:visibility="invisible"
                      />
     </FrameLayout>
@@ -103,6 +96,7 @@
                     android:textColor="@android:color/white"
                     android:gravity="center"
                     android:enabled="false"
+                    android:textSize="18sp"
                     android:text="登录" />
                 <Button
                     android:id="@+id/login_error"

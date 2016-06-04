@@ -33,11 +33,11 @@
                     android:paddingLeft="60dp">
             </EditText>
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:layout_gravity="left|center_vertical"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/icon_username" />
             <Button
                     android:id="@+id/rg_username_clear"
                     android:layout_width="20dp"
@@ -69,11 +69,11 @@
                     android:paddingLeft="60dp">
             </EditText>
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:layout_gravity="left|center_vertical"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/icon_password" />
             <Button
                     android:id="@+id/rg_pwd_eye"
                     android:layout_width="23dp"
@@ -105,11 +105,11 @@
                     android:paddingLeft="60dp">
             </EditText>
             <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="10dp"
                     android:layout_gravity="left|center_vertical"
-                    android:background="@drawable/ic_launcher" />
+                    android:background="@drawable/icon_captcha" />
 
             <Button
                     android:id="@+id/rg_identify_bt"

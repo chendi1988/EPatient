@@ -15,12 +15,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import com.example11.utils.CheckFormatUtil;
 import com.example11.utils.HttpPostUtil;
+import com.example11.view.DialogWaiting;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example11.utils.Contant.url_login;
+import static com.example11.utils.Contant.URL_HOST;
 
 /**
  * Created by chendi on 2016/5/29.
@@ -32,7 +34,6 @@ public class LoginActivity extends Activity {
 
     EditText et_pwd;
     Button bt_pwd_eye;
-    Button bt_pwd_clear;
 
     Button login;
 
@@ -60,7 +61,6 @@ public class LoginActivity extends Activity {
         et_pwd = (EditText) findViewById(R.id.password);
         et_pwd.addTextChangedListener(new EditChangedListener());
         bt_pwd_eye = (Button) findViewById(R.id.bt_pwd_eye);
-        bt_pwd_clear = (Button) findViewById(R.id.bt_pwd_clear);
 
         register = (Button) findViewById(R.id.register);
 
@@ -71,7 +71,6 @@ public class LoginActivity extends Activity {
 
         bt_username_clear.setOnClickListener(onClick);
         bt_pwd_eye.setOnClickListener(onClick);
-        bt_pwd_clear.setOnClickListener(onClick);
 
         login.setOnClickListener(onClick);
 
@@ -112,18 +111,13 @@ public class LoginActivity extends Activity {
 
                     break;
 
-                case R.id.bt_pwd_clear:
-
-                    et_pwd.setText("");
-                    bt_pwd_eye.setVisibility(View.INVISIBLE);
-                    bt_pwd_clear.setVisibility(View.INVISIBLE);
-                    showpwd = false;
-
-                    break;
-
                 case R.id.login:
 
-                    new LoginTask().execute();
+                    if(CheckFormatUtil.isPhoneNum(et_username.getText().toString().trim())){
+                        Toast.makeText(context,"请输入正确格式的手机号码",Toast.LENGTH_SHORT).show();
+                    }else{
+                        new LoginTask().execute();
+                    }
 
                     break;
                 case R.id.register:
@@ -161,14 +155,12 @@ public class LoginActivity extends Activity {
             if (et_pwd.getText().length() > 0) {
 
                 bt_pwd_eye.setVisibility(View.VISIBLE);
-                bt_pwd_clear.setVisibility(View.VISIBLE);
 
             } else {
                 bt_pwd_eye.setVisibility(View.INVISIBLE);
-                bt_pwd_clear.setVisibility(View.INVISIBLE);
             }
 
-            if (et_username.getText().length() > 10 && et_pwd.getText().length() > 6) {
+            if (et_username.getText().length() > 10 && et_pwd.getText().length() > 5) {
                 login.setEnabled(true);
             } else {
                 login.setEnabled(false);
@@ -185,6 +177,7 @@ public class LoginActivity extends Activity {
 
     class LoginTask extends AsyncTask<Void,Void,Map<String,Object>>{
         Map<String, Object> map;
+        DialogWaiting dialogWating;
         public LoginTask(){
 
             map = new HashMap<String, Object>();
@@ -196,25 +189,50 @@ public class LoginActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+
+            if(dialogWating==null){
+                dialogWating = new DialogWaiting(context,R.style.dialogwaitingstyle);
+            }
+
+            if(!dialogWating.isShowing()){
+                dialogWating.show();
+                dialogWating.setContent("登录中...");
+            }
+
         }
 
         @Override
         protected Map<String, Object> doInBackground(Void... params) {
-            return HttpPostUtil.getPostJsonResult(url_login,map);
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return HttpPostUtil.getPostJsonResult(URL_HOST,map,"");
         }
 
         @Override
         protected void onPostExecute(Map<String, Object> result) {
             super.onPostExecute(result);
+
+            map.clear();
+            map = null;
+
+            if(dialogWating!=null && dialogWating.isShowing()){
+                dialogWating.dismiss();
+            }
+
             if(!result.get("result").equals("null")){
                 if(result.get("result").equals("1")){
                     showToast("账号不存在");
-                }else  if(result.get("result").equals("2")){
+                }else if(result.get("result").equals("2")){
                     showToast("密码错误");
                 }else  if(result.get("result").equals("-1")){
                     showToast("系统出错，请重试");
                 }else{
-                    showToast("登录成功");
+                    showToast("登录成功"  + result.toString());
                     Intent intent = new Intent();
                     intent.setClass(context,MainActivity.class);
                     context.startActivity(intent);

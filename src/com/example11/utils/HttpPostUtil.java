@@ -15,7 +15,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example11.utils.Contant.ACTION;
 import static com.example11.utils.Contant.COMPANYID;
 
 
@@ -25,15 +24,15 @@ import static com.example11.utils.Contant.COMPANYID;
 public class HttpPostUtil {
     static HttpPost httpRequest;
 
-    public static Map<String, Object> getPostJsonResult(String url, Map<String, Object> map) {
+    public static Map<String, Object> getPostJsonResult(String url, Map<String, Object> map,String action) {
         String result = null;
         String err = "";
 
         httpRequest = new HttpPost(url);
         try {
             JSONObject jsObject = new JSONObject();
-            jsObject.put("action", ACTION);
             jsObject.put("CompanyID", COMPANYID);
+            jsObject.put("action", action);
 
             for (Map.Entry<String, Object> entity : map.entrySet()) {
                 jsObject.put(entity.getKey(), entity.getValue());
