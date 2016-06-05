@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class LoginTask extends AsyncTask<Integer,Integer,String>{
 
-    String url = Contant.url_login;
+    String url = Contant.URL_LOGIN;
     HttpPost httpPost;
 
     @Override

@@ -2,6 +2,7 @@ package com.example11.myapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 import com.example11.utils.CheckFormatUtil;
 import com.example11.utils.HttpPostUtil;
+import com.example11.utils.ToastUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +29,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static com.example11.utils.Contant.*;
+
 
 public class registerActivity extends Activity {
 
@@ -136,11 +141,6 @@ public class registerActivity extends Activity {
 
                 case R.id.register:
 
-//                    Intent intent = new Intent();
-//                    intent.setClass(context,MainActivity.class);
-//                    context.startActivity(intent);
-//                    finish();
-
                     if(CheckFormatUtil.isPhoneNum(rg_username.getText().toString().trim())){
                         Toast.makeText(context,"请输入正确格式的手机号码",Toast.LENGTH_SHORT).show();
                     }else{
@@ -243,12 +243,12 @@ public class registerActivity extends Activity {
 
     public int num = 60;
 
-    class RequestIdentify extends AsyncTask<Void,Void,Map<String, Object>>{
+    class RequestIdentify extends AsyncTask<Void,Void,String>{
 
-        Map<String, Object> map;
+        Map<String, String> map;
         public RequestIdentify(String phone){
-            map = new HashMap<String, Object>();
-            map.put("telephone",phone);
+            map = new HashMap<String, String>();
+            map.put("phone",phone);
         }
 
         @Override
@@ -257,13 +257,27 @@ public class registerActivity extends Activity {
         }
 
         @Override
-        protected Map<String, Object> doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
             return HttpPostUtil.getPostJsonResult(URL_SEND_IFYCODE,map,ACTION_IDENTIFY);
         }
 
         @Override
-        protected void onPostExecute(Map<String, Object> s) {
+        protected void onPostExecute(String s) {
             super.onPostExecute(s);
+
+            if(s != null){
+                try {
+                    JSONObject resultStr = new JSONObject(s);
+                    if(resultStr.optString("Status").equals("100")){
+                        ToastUtil.showToast(context,"验证码已发送，请注意查收");
+                    }else{
+                        ToastUtil.showToast(context,"验证码发送失败");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
 
             map.clear();
             map = null;
@@ -272,16 +286,15 @@ public class registerActivity extends Activity {
     }
 
 
-    class RegisteTask extends AsyncTask<Void,Void,Map<String, Object>>{
-        Map<String, Object> map;
+    class RegisteTask extends AsyncTask<Void,Void,String>{
+        Map<String, String> map;
         public RegisteTask(String phone,String identify,String pwd){
 
-            map = new HashMap<String, Object>();
+            map = new HashMap<String, String>();
             map.put("phone",phone);
             map.put("password",pwd);
-            map.put("identify",identify);
+            map.put("verifycode",identify);
         }
-
 
         @Override
         protected void onPreExecute() {
@@ -289,18 +302,41 @@ public class registerActivity extends Activity {
         }
 
         @Override
-        protected Map<String, Object> doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
             return HttpPostUtil.getPostJsonResult(URL_REGISTER,map,ACTION_REGISTER);
         }
 
         @Override
-        protected void onPostExecute(Map<String, Object> aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            if(s != null){
+                try {
+                    JSONObject resultStr = new JSONObject(s);
+                    if(resultStr.optString("Status").equals("100")){
+                        ToastUtil.showToast(context,"注册成功");
+                        Intent data = new Intent();
+                        data.putExtra("phone",rg_username.getText().toString().trim());
+                        data.putExtra("pwd",rg_pwd.getText().toString().trim());
+                        setResult(FLAG_REGISTER,data);
+                        finish();
+                    }else{
+                        ToastUtil.showToast(context,"注册失败");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
 
             map.clear();
             map = null;
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setResult(FLAG_REGISTER);
+    }
 }

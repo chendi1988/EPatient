@@ -15,14 +15,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example11.utils.CheckFormatUtil;
-import com.example11.utils.HttpPostUtil;
+import com.example11.utils.*;
 import com.example11.view.DialogWaiting;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example11.utils.Contant.URL_HOST;
+import static com.example11.utils.Contant.FLAG_REGISTER;
+import static com.example11.utils.Contant.URL_LOGIN;
+
 
 /**
  * Created by chendi on 2016/5/29.
@@ -42,6 +45,7 @@ public class LoginActivity extends Activity {
     boolean showpwd = false;
 
     Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,9 +117,9 @@ public class LoginActivity extends Activity {
 
                 case R.id.login:
 
-                    if(CheckFormatUtil.isPhoneNum(et_username.getText().toString().trim())){
-                        Toast.makeText(context,"请输入正确格式的手机号码",Toast.LENGTH_SHORT).show();
-                    }else{
+                    if (CheckFormatUtil.isPhoneNum(et_username.getText().toString().trim())) {
+                        Toast.makeText(context, "请输入正确格式的手机号码", Toast.LENGTH_SHORT).show();
+                    } else {
                         new LoginTask().execute();
                     }
 
@@ -123,9 +127,8 @@ public class LoginActivity extends Activity {
                 case R.id.register:
 
                     Intent intent1 = new Intent();
-                    intent1.setClass(context,registerActivity.class);
-                    context.startActivity(intent1);
-                    finish();
+                    intent1.setClass(context, registerActivity.class);
+                    startActivityForResult(intent1, FLAG_REGISTER);
 
                     break;
 
@@ -175,14 +178,16 @@ public class LoginActivity extends Activity {
     }
 
 
-    class LoginTask extends AsyncTask<Void,Void,Map<String,Object>>{
-        Map<String, Object> map;
+    class LoginTask extends AsyncTask<Void, Void, String> {
+        Map<String, String> map;
         DialogWaiting dialogWating;
-        public LoginTask(){
 
-            map = new HashMap<String, Object>();
-            map.put("Tel",et_username.getText());
-            map.put("Pwd",et_pwd.getText());
+        public LoginTask() {
+
+            map = new HashMap<String, String>();
+            map.put("phone", et_username.getText().toString());
+            map.put("password", et_pwd.getText().toString());
+            map.put("identify", "");
 
         }
 
@@ -190,11 +195,11 @@ public class LoginActivity extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            if(dialogWating==null){
-                dialogWating = new DialogWaiting(context,R.style.dialogwaitingstyle);
+            if (dialogWating == null) {
+                dialogWating = new DialogWaiting(context, R.style.dialogwaitingstyle);
             }
 
-            if(!dialogWating.isShowing()){
+            if (!dialogWating.isShowing()) {
                 dialogWating.show();
                 dialogWating.setContent("登录中...");
             }
@@ -202,7 +207,7 @@ public class LoginActivity extends Activity {
         }
 
         @Override
-        protected Map<String, Object> doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
 
             try {
                 Thread.sleep(2000);
@@ -210,43 +215,52 @@ public class LoginActivity extends Activity {
                 e.printStackTrace();
             }
 
-            return HttpPostUtil.getPostJsonResult(URL_HOST,map,"");
+            return HttpPostUtil.getPostJsonResult(URL_LOGIN, map, "");
         }
 
         @Override
-        protected void onPostExecute(Map<String, Object> result) {
+        protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            map.clear();
-            map = null;
-
-            if(dialogWating!=null && dialogWating.isShowing()){
+            if (dialogWating != null && dialogWating.isShowing()) {
                 dialogWating.dismiss();
             }
 
-            if(!result.get("result").equals("null")){
-                if(result.get("result").equals("1")){
-                    showToast("账号不存在");
-                }else if(result.get("result").equals("2")){
-                    showToast("密码错误");
-                }else  if(result.get("result").equals("-1")){
-                    showToast("系统出错，请重试");
-                }else{
-                    showToast("登录成功"  + result.toString());
-                    Intent intent = new Intent();
-                    intent.setClass(context,MainActivity.class);
-                    context.startActivity(intent);
-                    finish();
-                }
+            if (result != null) {
+                try {
+                    JSONObject resultStr = new JSONObject(result);
+                    if (resultStr.optString("Status").equals("100")) {
+                        showToast("登录成功" + result.toString());
 
-            }else{
-                showToast(result.get("err").toString());
+                        Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER,map);
+
+                        Intent intent = new Intent();
+                        intent.setClass(context, MainActivity.class);
+                        finish();
+                    } else {
+                        ToastUtil.showToast(context, "登录失败");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
         }
     }
 
-    public void showToast(String msg){
-        Toast.makeText(context,msg.toString(),Toast.LENGTH_SHORT).show();
+    public void showToast(String msg) {
+        Toast.makeText(context, msg.toString(), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(data!=null){
+            et_username.setText(data.getStringExtra("phone"));
+            et_pwd.setText(data.getStringExtra("pwd"));
+            new LoginTask().execute();
+        }
+    }
 }
