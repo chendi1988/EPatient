@@ -19,10 +19,14 @@ public class Contant {
     public static final String ACTION_REGISTER = "POSTREGISTEREHT";
     public static final String URL_REGISTER = URL_HOST + "do_register";
 
+    //登录
     public static final String URL_LOGIN = URL_HOST + "do_login";
 
+    //商品列表加载
+    public static final String URL_GOODS = URL_HOST + "get_goods";
 
-    public static final String SP_USER = "user";
+
+    public static final String SP_USER = "user.xml";
 
 
 

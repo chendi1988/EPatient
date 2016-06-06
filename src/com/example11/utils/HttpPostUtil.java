@@ -29,17 +29,6 @@ public class HttpPostUtil {
         String err = "";
 
         httpRequest = new HttpPost(url);
-        //            JSONObject jsObject = new JSONObject();
-//            jsObject.put("CompanyID", COMPANYID);
-//            jsObject.put("action", action);
-//
-//            for (Map.Entry<String, Object> entity : map.entrySet()) {
-//                jsObject.put(entity.getKey(), entity.getValue());
-//            }
-//
-//            // 发出HTTP request
-//            httpRequest
-//                    .setEntity(new StringEntity(jsObject.toString(), "UTF-8"));
 
         List<NameValuePair> paramList = new ArrayList<NameValuePair>();
 

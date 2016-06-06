@@ -27,7 +27,6 @@
                     android:paddingRight="60dp"
                     android:background="@drawable/login_edite_style"
                     android:hint="手机号码"
-                    android:text="181111111111"
                     android:textColorHint="#666666"
                     android:maxLength="11"
                     android:paddingLeft="50dp">
@@ -64,7 +63,6 @@
                     android:paddingRight="60dp"
                     android:background="@drawable/login_edite_style"
                     android:hint="密码"
-                    android:text="asjdhkadfhkdjhfkd"
                     android:textColorHint="#666666"
                     android:maxLength="11"
                     android:paddingLeft="50dp">

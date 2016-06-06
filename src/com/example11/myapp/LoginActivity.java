@@ -59,12 +59,18 @@ public class LoginActivity extends Activity {
         login = (Button) findViewById(R.id.login);
 
         et_username = (EditText) findViewById(R.id.username);
+        et_username.setText(Util_SharedPreferences.getInstance().getItemDataByKey(context, Contant.SP_USER, "phone"));
         et_username.addTextChangedListener(new EditChangedListener());
         bt_username_clear = (Button) findViewById(R.id.bt_username_clear);
 
         et_pwd = (EditText) findViewById(R.id.password);
+        et_pwd.setText(Util_SharedPreferences.getInstance().getItemDataByKey(context, Contant.SP_USER, "password"));
         et_pwd.addTextChangedListener(new EditChangedListener());
         bt_pwd_eye = (Button) findViewById(R.id.bt_pwd_eye);
+
+        if(et_username.getText().length() > 10 && et_pwd.getText().length() > 5){
+            login.setEnabled(true);
+        }
 
         register = (Button) findViewById(R.id.register);
 
@@ -232,10 +238,23 @@ public class LoginActivity extends Activity {
                     if (resultStr.optString("Status").equals("100")) {
                         showToast("登录成功" + result.toString());
 
-                        Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER,map);
+
+                        resultStr = new JSONObject(resultStr.get("result").toString());
+
+                        map.put("username", resultStr.optString("username"));
+                        map.put("token", resultStr.optString("token"));
+                        map.put("sex", resultStr.optString("sex"));
+                        map.put("age", resultStr.optString("age"));
+                        map.put("phone", resultStr.optString("phone"));
+                        map.put("height", resultStr.optString("height"));
+                        map.put("weight", resultStr.optString("weight"));
+                        map.put("address", resultStr.optString("address"));
+
+                        Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER, map);
 
                         Intent intent = new Intent();
                         intent.setClass(context, MainActivity.class);
+                        context.startActivity(intent);
                         finish();
                     } else {
                         ToastUtil.showToast(context, "登录失败");
@@ -257,7 +276,7 @@ public class LoginActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(data!=null){
+        if (data != null) {
             et_username.setText(data.getStringExtra("phone"));
             et_pwd.setText(data.getStringExtra("pwd"));
             new LoginTask().execute();
