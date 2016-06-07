@@ -7,8 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import com.example11.myapp.LoginActivity;
 import com.example11.myapp.R;
 import com.example11.myapp.SettingActivity;
+import com.example11.utils.Contant;
 
 public class Fragment_Main_03 extends Fragment implements View.OnClickListener{
 
@@ -60,6 +62,11 @@ public class Fragment_Main_03 extends Fragment implements View.OnClickListener{
 
 		switch (v.getId()){
 			case R.id.re_personal_info:
+//				intent.setClass(getActivity(), PersonalInfos.class);
+//				getActivity().startActivity(intent);
+				intent.putExtra("target", Contant.START_PERSONAL_ACTIVITY);
+				intent.setClass(getActivity(), LoginActivity.class);
+				getActivity().startActivity(intent);
 				break;
 			case R.id.re_setting:
 				intent.setClass(getActivity(), SettingActivity.class);

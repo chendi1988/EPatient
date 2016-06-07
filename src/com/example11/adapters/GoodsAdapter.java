@@ -82,7 +82,7 @@ public class GoodsAdapter extends BaseAdapter {
             fb.display(VH.img_header,Alist.get(position).get("photo").toString());
         }
         VH.name.setText( Alist.get(position).get("name").toString());
-        VH.money.setText( Alist.get(position).get("money").toString());
+        VH.money.setText("￥" + Alist.get(position).get("money").toString() + "元");
         VH.descption.setText( Alist.get(position).get("dec").toString());
 
         return convertView;

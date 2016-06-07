@@ -5,18 +5,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.Selection;
-import android.text.Spannable;
-import android.text.TextWatcher;
+import android.text.*;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.example11.utils.*;
 import com.example11.view.DialogWaiting;
+import com.example11.view.LinearLayoutView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +29,7 @@ import static com.example11.utils.Contant.URL_LOGIN;
 /**
  * Created by chendi on 2016/5/29.
  */
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity  implements LinearLayoutView.KeyBordStateListener {
 
     EditText et_username;
     Button bt_username_clear;
@@ -46,6 +45,9 @@ public class LoginActivity extends Activity {
 
     Context context;
 
+    private LinearLayoutView resizeLayout;
+    LinearLayout logoLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,11 @@ public class LoginActivity extends Activity {
 
     public void initView() {
 
+        resizeLayout = (LinearLayoutView) findViewById(R.id.login_root_layout);
+        logoLayout = (LinearLayout) findViewById(R.id.login_layout_logo);
+        resizeLayout.setKeyBordStateListener(this);
         login = (Button) findViewById(R.id.login);
+
 
         et_username = (EditText) findViewById(R.id.username);
         et_username.setText(Util_SharedPreferences.getInstance().getItemDataByKey(context, Contant.SP_USER, "phone"));
@@ -123,7 +129,7 @@ public class LoginActivity extends Activity {
 
                 case R.id.login:
 
-                    if (CheckFormatUtil.isPhoneNum(et_username.getText().toString().trim())) {
+                    if (!CheckFormatUtil.isPhoneNum(et_username.getText().toString().trim())) {
                         Toast.makeText(context, "请输入正确格式的手机号码", Toast.LENGTH_SHORT).show();
                     } else {
                         new LoginTask().execute();
@@ -144,6 +150,18 @@ public class LoginActivity extends Activity {
             }
         }
     };
+
+    @Override
+    public void stateChange(int state) {
+        switch (state) {
+            case LinearLayoutView.KEYBORAD_HIDE:
+                logoLayout.setVisibility(View.VISIBLE);
+                break;
+            case LinearLayoutView.KEYBORAD_SHOW:
+                logoLayout.setVisibility(View.GONE);
+                break;
+        }
+    }
 
     class EditChangedListener implements TextWatcher {
 
@@ -253,8 +271,13 @@ public class LoginActivity extends Activity {
                         Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER, map);
 
                         Intent intent = new Intent();
-                        intent.setClass(context, MainActivity.class);
-                        context.startActivity(intent);
+                        switch (getIntent().getIntExtra("target",0)){
+                            case Contant.START_PERSONAL_ACTIVITY:
+                                intent.setClass(context, PersonalInfos.class);
+                                context.startActivity(intent);
+                                break;
+                        }
+
                         finish();
                     } else {
                         ToastUtil.showToast(context, "登录失败");

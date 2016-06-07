@@ -29,6 +29,9 @@ public class Contant {
     public static final String SP_USER = "user.xml";
 
 
+    public static final int START_PERSONAL_ACTIVITY = 0;
+
+
 
 
 }

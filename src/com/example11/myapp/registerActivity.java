@@ -141,7 +141,7 @@ public class registerActivity extends Activity {
 
                 case R.id.register:
 
-                    if(CheckFormatUtil.isPhoneNum(rg_username.getText().toString().trim())){
+                    if(!CheckFormatUtil.isPhoneNum(rg_username.getText().toString().trim())){
                         Toast.makeText(context,"请输入正确格式的手机号码",Toast.LENGTH_SHORT).show();
                     }else{
                         new RegisteTask(rg_username.getText().toString().trim(),rg_identify.getText().toString().trim(),rg_pwd.getText().toString().trim()).execute();
@@ -151,7 +151,7 @@ public class registerActivity extends Activity {
 
                 case R.id.rg_identify_bt:
 
-                    if(CheckFormatUtil.isPhoneNum(rg_username.getText().toString().trim())){
+                    if(!CheckFormatUtil.isPhoneNum(rg_username.getText().toString().trim())){
                         Toast.makeText(context,"请输入正确格式的手机号码",Toast.LENGTH_SHORT).show();
                     }else{
                         rg_identify_bt.setEnabled(false);
