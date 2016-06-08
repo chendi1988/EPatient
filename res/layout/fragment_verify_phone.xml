@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/activity_bg_color"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:background="@color/common_top_bar_blue" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/titlemsg"
+                android:text="验证手机号码"
+                android:textColor="@color/title_text_color"
+                android:textSize="@dimen/title_size" />
+    </RelativeLayout>
+
+    <FrameLayout
+            android:id="@+id/rg_username_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:gravity="center"
+            >
+
+        <EditText
+                android:id="@+id/rg_phone"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/default_edittext_height"
+                android:background="@drawable/login_edite_style"
+                android:inputType="phone"
+                android:paddingRight="60dp"
+                android:hint="输入你的手机号码"
+                android:textSize="16sp"
+                android:maxLength="11"
+                android:paddingLeft="90dp">
+        </EditText>
+
+        <TextView
+                android:layout_width="80dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:text="手机号码"
+                android:layout_gravity="left|center_vertical"
+                android:textColor="@color/lable_edite_color"
+                android:textSize="@dimen/lable_edite_size"
+                android:gravity="center"
+                />
+        <Button
+                android:id="@+id/rg_phone_clear"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/editor_clear_layout"
+                android:visibility="invisible"
+                android:layout_gravity="right|center_vertical"
+                android:layout_marginRight="10dp"
+        />
+    </FrameLayout>
+
+
+    <Button
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/btn_register_bg"
+            android:enabled="false"
+            android:layout_margin="10dp"
+            android:text="下一步"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+</LinearLayout>

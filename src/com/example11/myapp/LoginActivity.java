@@ -41,12 +41,17 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
 
     Button register;
 
+    Button forget;
+
     boolean showpwd = false;
 
     Context context;
 
     private LinearLayoutView resizeLayout;
     LinearLayout logoLayout;
+
+    public int typeRegister = 0;
+    public int typeForget = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +84,7 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
         }
 
         register = (Button) findViewById(R.id.register);
+        forget = (Button) findViewById(R.id.foget);
 
         bindOnClick();
     }
@@ -91,6 +97,7 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
         login.setOnClickListener(onClick);
 
         register.setOnClickListener(onClick);
+        forget.setOnClickListener(onClick);
     }
 
     View.OnClickListener onClick = new View.OnClickListener() {
@@ -139,8 +146,18 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
                 case R.id.register:
 
                     Intent intent1 = new Intent();
-                    intent1.setClass(context, registerActivity.class);
+                    intent1.putExtra("type",typeRegister);
+                    intent1.setClass(context, RegisteActivity.class);
                     startActivityForResult(intent1, FLAG_REGISTER);
+
+                    break;
+
+                case R.id.foget:
+
+                    Intent intent2 = new Intent();
+                    intent2.putExtra("type",typeRegister);
+                    intent2.setClass(context, RegisteActivity.class);
+                    startActivityForResult(intent2, FLAG_REGISTER);
 
                     break;
 
@@ -270,14 +287,14 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
 
                         Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER, map);
 
-                        Intent intent = new Intent();
-                        switch (getIntent().getIntExtra("target",0)){
-                            case Contant.START_PERSONAL_ACTIVITY:
-                                intent.setClass(context, PersonalInfos.class);
-                                context.startActivity(intent);
-                                break;
-                        }
-
+//                        Intent intent = new Intent();
+//                        switch (getIntent().getIntExtra("target",0)){
+//                            case Contant.START_PERSONAL_ACTIVITY:
+//                                intent.setClass(context, PersonalInfos.class);
+//                                context.startActivity(intent);
+//                                break;
+//                        }
+                        setResult(1);
                         finish();
                     } else {
                         ToastUtil.showToast(context, "登录失败");

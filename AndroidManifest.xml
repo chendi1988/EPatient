@@ -22,6 +22,9 @@
             </intent-filter>
         </activity>
 
+
+        <activity android:name="RegisteActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+
         <activity android:name="MainActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name="MyActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name="KaKaLauncherActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>

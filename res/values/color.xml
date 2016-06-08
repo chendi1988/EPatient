@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="common_top_bar_blue">#22292c</color>
+
+    <color name="activity_bg_color">#ffffff</color>
+
+    <color name="title_text_color">#ffffff</color>
+
+    <color name="lable_edite_color">#666666</color>
 </resources>

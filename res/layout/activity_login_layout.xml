@@ -138,7 +138,7 @@
                 android:textSize="18sp"
                 android:text="登录" />
         <Button
-                android:id="@+id/login_error"
+                android:id="@+id/foget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -151,7 +151,7 @@
                 android:textSize="16sp" />
         <Button
                 android:id="@+id/register"
-                android:layout_toRightOf="@id/login_error"
+                android:layout_toRightOf="@id/foget"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/login"

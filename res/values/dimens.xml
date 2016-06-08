@@ -17,6 +17,10 @@
     <dimen name="image_thumbnail_size">100dp</dimen>
     <dimen name="image_thumbnail_spacing">1dp</dimen>
 
+    <dimen name="title_size">18sp</dimen>
+
+    <dimen name="lable_edite_size">16sp</dimen>
+
 
 
     <dimen name="default_edittext_height">50dp</dimen>

@@ -21,6 +21,9 @@ import com.example11.fragments.Fragment_Main_01;
 import com.example11.fragments.Fragment_Main_02;
 import com.example11.fragments.Fragment_Main_03;
 import com.example11.fragments.Fragment_Main_04;
+import com.example11.utils.CheckFormatUtil;
+import com.example11.utils.Contant;
+import com.example11.utils.Util_SharedPreferences;
 
 public class MainActivity extends FragmentActivity {
 	// 未读消息textview
@@ -55,6 +58,10 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_mian_temp);
 		context = this;
 		initView();
+		netBReciver = new NetBReciver();
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+		registerReceiver(netBReciver, intentFilter);
 
 	}
 
@@ -111,8 +118,18 @@ public class MainActivity extends FragmentActivity {
 			titlemsg.setText("商城");
 			break;
 		case R.id.re_find:
-			index = 2;
-			titlemsg.setText("我的");
+
+			String phoneNum = Util_SharedPreferences.getInstance().getItemDataByKey(context,Contant.SP_USER,"phone");
+
+			if(!CheckFormatUtil.isPhoneNum(phoneNum)){
+				Intent intent = new Intent();
+				intent.putExtra("target", Contant.START_PERSONAL_ACTIVITY);
+				intent.setClass(context, LoginActivity.class);
+				startActivityForResult(intent,0);
+			}else{
+				index = 2;
+				titlemsg.setText("我的");
+			}
 			break;
 		case R.id.re_profile:
 			index = 3;
@@ -137,10 +154,6 @@ public class MainActivity extends FragmentActivity {
 		textviews[index].setTextColor(0xFF45C01A);
 		currentTabIndex = index;
 
-		netBReciver = new NetBReciver();
-		IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-		registerReceiver(netBReciver, intentFilter);
 	}
 
 	View.OnClickListener onClick = new View.OnClickListener() {
@@ -154,6 +167,34 @@ public class MainActivity extends FragmentActivity {
 		}
 	};
 
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == 1) {
+			index = 2;
+			titlemsg.setText("我的");
+
+		if (currentTabIndex != index) {
+			FragmentTransaction trx = getSupportFragmentManager()
+					.beginTransaction();
+			trx.hide(fragments[currentTabIndex]);
+			if (!fragments[index].isAdded()) {
+				trx.add(R.id.fragment_container, fragments[index]);
+			}
+			trx.show(fragments[index]).commit();
+		}
+		imagebuttons[currentTabIndex].setSelected(false);
+		// 把当前tab设为选中状态
+		imagebuttons[index].setSelected(true);
+		textviews[currentTabIndex].setTextColor(0xFF999999);
+		textviews[index].setTextColor(0xFF45C01A);
+		currentTabIndex = index;
+		}
+	}
+
+
 	private long exitTime = 0;
 
 	@Override
@@ -164,6 +205,8 @@ public class MainActivity extends FragmentActivity {
 				Toast.makeText(getApplicationContext(), "再按一次退出程序",
 						Toast.LENGTH_SHORT).show();
 				exitTime = System.currentTimeMillis();
+
+				Util_SharedPreferences.getInstance().clearData(context,Contant.SP_USER);
 			} else {
 				moveTaskToBack(false);
 				finish();
