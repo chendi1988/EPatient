@@ -13,16 +13,6 @@ public class RegisteActivity extends FragmentActivity {
 
     }
 
-    /**
-     *
-     * @return 0注册 1忘记密码
-     */
-    public int getRequestType(){
-
-        return getIntent().getIntExtra("type",0);
-
-    }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         super.onKeyDown(keyCode, event);
