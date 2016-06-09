@@ -104,12 +104,12 @@ public class Fragment_Verify_Verify extends Fragment {
                     break;
                 case R.id.next:
 
-                    Bundle vBundle = new Bundle();
-                    bundle.putString("phone",bundle.getString("phone"));
+//                    Bundle vBundle = new Bundle();
+//                    bundle.putString("phone",bundle.getString("phone"));
                     bundle.putString("verify",verify.getText().toString().trim());
 
                     Fragment_Verify_pwd fragmentVerifyPwd = new Fragment_Verify_pwd();
-                    fragmentVerifyPwd.setArguments(vBundle);
+                    fragmentVerifyPwd.setArguments(bundle);
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();

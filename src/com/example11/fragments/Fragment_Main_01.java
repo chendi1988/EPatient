@@ -7,24 +7,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import com.example11.adapters.DoctorsAdapter;
+import com.example11.adapters.GirdDropDownAdapter;
+import com.example11.adapters.ListDropDownAdapter;
 import com.example11.myapp.R;
 import com.example11.utils.HttpPostUtil;
 import com.example11.utils.ToastUtil;
+import com.example11.view.DropDownMenu;
 import com.example11.view.XListView;
 import net.tsz.afinal.FinalBitmap;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static com.example11.utils.Contant.URL_GOODS;
 
-public class Fragment_Main_01 extends Fragment implements XListView.IXListViewListener {
+public class Fragment_Main_01 extends Fragment{
     private XListView mListView;
     private DoctorsAdapter mAdapter;
     private Handler mHandler;
@@ -32,7 +34,7 @@ public class Fragment_Main_01 extends Fragment implements XListView.IXListViewLi
     private int diedline = 0;
     private int show_num = 0;
 
-    List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+    List<Map<String, Object>> datas = new ArrayList<Map<String, Object>>();
 
     private boolean tag = false;
 
@@ -40,117 +42,115 @@ public class Fragment_Main_01 extends Fragment implements XListView.IXListViewLi
 
     private boolean load_more = true;
 
+    View view;
+
+    DropDownMenu mDropDownMenu;
+    private String headers[] = {"城市", "医院", "科室", "名医"};
+    private List<View> popupViews = new ArrayList<View>();
+
+    private GirdDropDownAdapter cityAdapter;
+    private ListDropDownAdapter hospitalAdapter;
+    private ListDropDownAdapter departmentAdapter;
+    private ListDropDownAdapter famouAdapter;
+
+    private String citys[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
+    private String hospitals[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
+    private String departments[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
+    private String famous[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View frag = inflater.inflate(R.layout.fragment_main_01, null);
+        View view = inflater.inflate(R.layout.fragment_main_01, null);
+
+        mDropDownMenu = (DropDownMenu) view.findViewById(R.id.dropDownMenu);
+
+        initView(view);
+        return view;
+    }
+
+    private void initView(View view) {
+        //init city menu
+        final ListView cityView = new ListView(view.getContext());
+        cityAdapter = new GirdDropDownAdapter(view.getContext(), Arrays.asList(citys));
+        cityView.setDividerHeight(0);
+        cityView.setAdapter(cityAdapter);
+
+        //init hospital menu
+        final ListView hospitalView = new ListView(view.getContext());
+        hospitalView.setDividerHeight(0);
+        hospitalAdapter = new ListDropDownAdapter(view.getContext(), Arrays.asList(hospitals));
+        hospitalView.setAdapter(hospitalAdapter);
+
+        //init department menu
+        final ListView departmentView = new ListView(view.getContext());
+        departmentView.setDividerHeight(0);
+        departmentAdapter = new ListDropDownAdapter(view.getContext(), Arrays.asList(departments));
+        departmentView.setAdapter(departmentAdapter);
+
+        //init famous menu
+        final ListView famouView = new ListView(view.getContext());
+        famouView.setDividerHeight(0);
+        famouAdapter = new ListDropDownAdapter(view.getContext(), Arrays.asList(famous));
+        famouView.setAdapter(famouAdapter);
+
+        //init popupViews
+        popupViews.add(cityView);
+        popupViews.add(hospitalView);
+        popupViews.add(departmentView);
+        popupViews.add(famouView);
+
+        //add item click event
+        cityView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                cityAdapter.setCheckItem(position);
+                mDropDownMenu.setTabText(position == 0 ? headers[0] : citys[position]);
+                mDropDownMenu.closeMenu();
+            }
+        });
+
+        hospitalView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                hospitalAdapter.setCheckItem(position);
+                mDropDownMenu.setTabText(position == 0 ? headers[1] : hospitals[position]);
+                mDropDownMenu.closeMenu();
+            }
+        });
+
+        departmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                departmentAdapter.setCheckItem(position);
+                mDropDownMenu.setTabText(position == 0 ? headers[2] : departments[position]);
+                mDropDownMenu.closeMenu();
+            }
+        });
+
+        famouView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                famouAdapter.setCheckItem(position);
+                mDropDownMenu.setTabText(position == 0 ? headers[3] : famous[position]);
+                mDropDownMenu.closeMenu();
+            }
+        });
+
 
         fb = FinalBitmap.create(getActivity());
 
-        geneRefreshItems();
-        mListView = (XListView) frag.findViewById(R.id.xListView);
+        //init doctor list
+        mListView = new XListView(view.getContext());
+        mListView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         mListView.setPullLoadEnable(true);
 
-        mAdapter = new DoctorsAdapter(getActivity(), list, fb);
+        mAdapter = new DoctorsAdapter(getActivity(), datas, fb);
         mListView.setAdapter(mAdapter);
 
-        if (list != null && list.size() < 10) {
-//			mListView.setPullLoadEnable(false);
-        }
-
-        mListView.setXListViewListener(this);
-        mHandler = new Handler();
-
-        return frag;
+        //init dropdownview
+        mDropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, mListView);
     }
 
-    private void geneUploadItems() {
-
-//		if (load_more != false) {
-//
-//			for (int i = 0; i != 50; ++i) {
-//				// i从0开始
-//				show_num = diedline + 1;
-//				items.add("refresh cnt " + show_num);
-//			}
-//
-//			diedline = show_num;
-//
-//			if (items.size() > 50) {
-//
-//				load_more = false;
-//				// mListView.setPullLoadEnable(false);// 加载更多控件动态控制屏蔽
-//				tag = true;
-//			}
-//
-//		}
-
-    }
-
-    private void geneRefreshItems() {
-
-        for (int i = 0; i != 50; ++i) {
-            show_num = start + i;
-//			items.add("refresh cnt " + show_num);
-        }
-
-        diedline = show_num;
-
-    }
-
-    private void onLoad() {
-        mListView.stopRefresh();
-        mListView.stopLoadMore();
-        mListView.setRefreshTime("刚刚");
-
-        if (list != null && list.size() > 15) {
-            mListView.setPullLoadEnable(true);
-        }
-
-        if (tag) {
-            mListView.setFooterText(false, "到底了~");
-        }
-    }
-
-    @Override
-    public void onRefresh() {
-
-        tag = false;
-
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-//				start = start - 1;
-//				items.clear();
-//				geneRefreshItems();
-//				mAdapter = new DoctorsAdapter(getActivity(),
-//						list, fb);
-//				mListView.setAdapter(mAdapter);
-                onLoad();
-            }
-        }, 2000);
-    }
-
-    @Override
-    public void onLoadMore() {
-
-        tag = false;
-
-        if (list != null && list.size() > 0) {
-            new TaskLoadMore(list.size() + 1).execute();
-        } else {
-            new TaskLoadMore(1).execute();
-        }
-
-//		mHandler.postDelayed(new Runnable() {
-//			@Override
-//			public void run() {
-//
-////				geneUploadItems();
-////				mAdapter.notifyDataSetChanged();
-//				onLoad();
-//			}
-//		}, 2000);
-    }
 
     class TaskRefresh extends AsyncTask<Void, Void, String> {
 
@@ -216,15 +216,15 @@ public class Fragment_Main_01 extends Fragment implements XListView.IXListViewLi
                     JSONObject jsonObject = new JSONObject(s);
                     if (jsonObject.optString("Status").equals("100")) {
                         JSONArray jsonArray = jsonObject.getJSONArray("result");
-                        Map<String ,String> map_item;
+                        Map<String, String> map_item;
                         for (int i = 0; i < jsonArray.length(); i++) {
                             jsonObject = jsonArray.getJSONObject(i);
                             map_item = new HashMap<String, String>();
-                            map_item.put("id",jsonObject.optString("id"));
-                            map_item.put("photo",jsonObject.optString("photo"));
-                            map_item.put("goodname",jsonObject.optString("goodname"));
-                            map_item.put("money",jsonObject.optString("money"));
-                            map_item.put("dec",jsonObject.optString("dec"));
+                            map_item.put("id", jsonObject.optString("id"));
+                            map_item.put("photo", jsonObject.optString("photo"));
+                            map_item.put("goodname", jsonObject.optString("goodname"));
+                            map_item.put("money", jsonObject.optString("money"));
+                            map_item.put("dec", jsonObject.optString("dec"));
 
                         }
 

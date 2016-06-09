@@ -1,6 +1,8 @@
 package com.example11.myapp;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -27,11 +29,14 @@ public class PersonalInfos extends Activity implements View.OnClickListener{
     TextView personal_phone;
     TextView personal_address;
 
+    Context context;
+    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personal_infos_layout);
-
+        context = this;
         initView();
     }
 
@@ -65,8 +70,15 @@ public class PersonalInfos extends Activity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
 
+
+
         switch (v.getId()){
             case R.id.personal_real_name_item:
+
+                intent = new Intent();
+                intent.putExtra("item",0);
+                intent.setClass(context,PersonalInfoChangeActivity.class);
+                startActivityForResult(intent,0);
 
                 break;
 
@@ -76,13 +88,28 @@ public class PersonalInfos extends Activity implements View.OnClickListener{
 
             case R.id.personal_age_item:
 
+                intent = new Intent();
+                intent.putExtra("item",2);
+                intent.setClass(context,PersonalInfoChangeActivity.class);
+                startActivityForResult(intent,2);
+
                 break;
 
             case R.id.personal_height_item:
 
+                intent = new Intent();
+                intent.putExtra("item",3);
+                intent.setClass(context,PersonalInfoChangeActivity.class);
+                startActivityForResult(intent,3);
+
                 break;
 
             case R.id.personal_weight_item:
+
+                intent = new Intent();
+                intent.putExtra("item",4);
+                intent.setClass(context,PersonalInfoChangeActivity.class);
+                startActivityForResult(intent,4);
 
                 break;
 
@@ -91,8 +118,52 @@ public class PersonalInfos extends Activity implements View.OnClickListener{
                 break;
             case R.id.personal_address_item:
 
+                intent = new Intent();
+                intent.putExtra("item",6);
+                intent.setClass(context,PersonalInfoChangeActivity.class);
+                startActivityForResult(intent,6);
+
                 break;
         }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (resultCode){
+            case 0:
+
+                personal_real_name.setText(data.getStringExtra("key"));
+
+                break;
+
+            case 2:
+
+                personal_age.setText(data.getStringExtra("key"));
+
+                break;
+
+            case 3:
+
+                personal_height.setText(data.getStringExtra("key") + "cm");
+
+                break;
+
+            case 4:
+
+                personal_weight.setText(data.getStringExtra("key") + "kg");
+
+                break;
+
+            case 6:
+
+                personal_address.setText(data.getStringExtra("key"));
+
+                break;
+
+           default:
+                break;
+        }
     }
 }

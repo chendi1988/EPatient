@@ -35,8 +35,6 @@ public class MainActivity extends FragmentActivity {
 	private Fragment_Main_03 findfragment;
 	private Fragment_Main_04 profilefragment;
 
-	public Fragment01 fragment01;
-
 	private ImageView[] imagebuttons;
 	private TextView[] textviews;
 	private int index;
@@ -84,8 +82,6 @@ public class MainActivity extends FragmentActivity {
 		fragments = new Fragment[] { homefragment, contactlistfragment,
 				findfragment, profilefragment };
 
-		fragment01 = new Fragment01();
-
 		imagebuttons = new ImageView[4];
 		imagebuttons[0] = (ImageView) findViewById(R.id.ib_weixin);
 		imagebuttons[1] = (ImageView) findViewById(R.id.ib_contact_list);
@@ -101,12 +97,12 @@ public class MainActivity extends FragmentActivity {
 		textviews[0].setTextColor(0xFF45C01A);
 		// 添加显示第一个fragment
 		getSupportFragmentManager().beginTransaction()
-				.add(R.id.fragment_container, fragment01)
+				.add(R.id.fragment_container, homefragment)
 				.add(R.id.fragment_container, contactlistfragment)
 				.add(R.id.fragment_container, profilefragment)
 				.add(R.id.fragment_container, findfragment)
 				.hide(contactlistfragment).hide(profilefragment)
-				.hide(findfragment).show(fragment01).commit();
+				.hide(findfragment).show(homefragment).commit();
 
 	}
 

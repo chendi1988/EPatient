@@ -1,5 +1,7 @@
 package com.example11.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,6 +46,19 @@ public class Fragment_Verify_pwd extends Fragment {
 
     int type = 0;
 
+    public interface GetType{
+        public int getType();
+    }
+
+    GetType getType;
+
+    @Override
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        getType = (GetType) activity;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         vBundle = getArguments();
@@ -53,8 +68,7 @@ public class Fragment_Verify_pwd extends Fragment {
         pwd_eye = (Button) view.findViewById(R.id.pwd_eye);
         register = (Button) view.findViewById(R.id.register);
 
-
-        switch (getActivity().getIntent().getIntExtra("type", 0)) {
+        switch (getType.getType()) {
             case 0:
 
                 url = Contant.URL_REGISTER;
@@ -116,7 +130,13 @@ public class Fragment_Verify_pwd extends Fragment {
 
                     String pwdStr = pwd.getText().toString().trim();
                     if (pwdStr.length() > 5) {
-                        new RegisterTask(pwdStr).execute();
+//                        new RegisterTask(pwdStr).execute();
+
+                        Intent intent = new Intent();
+                        intent.putExtra("phone",vBundle.getString("phone"));
+                        intent.putExtra("pwd",pwdStr);
+                        getActivity().setResult(1,intent);
+                        getActivity().finish();
                     } else {
                         ToastUtil.showToast(getActivity(), "输入长度6~10位密码");
                     }
@@ -161,6 +181,10 @@ public class Fragment_Verify_pwd extends Fragment {
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     if (jsonObject.optString("Status").equals("100")) {
+
+                        Intent intent = new Intent();
+                        intent.putExtra("phone",map.get("phone"));
+                        intent.putExtra("password",map.get("password"));
                         getActivity().setResult(1);
                         getActivity().finish();
                     }

@@ -24,7 +24,7 @@ import java.util.Map;
 
 import static com.example11.utils.Contant.URL_GOODS;
 
-public class Fragment_Main_02 extends Fragment implements XListView.IXListViewListener {
+public class Fragment_Main_02 extends Fragment {
 
     private XListView mListView;
     private GoodsAdapter mAdapter;
@@ -47,8 +47,8 @@ public class Fragment_Main_02 extends Fragment implements XListView.IXListViewLi
         View view = inflater.inflate(R.layout.fragment_main_02, null);
         fb = FinalBitmap.create(getActivity());
 
-        geneRefreshItems();
         mListView = (XListView) view.findViewById(R.id.xListView);
+        mListView.setDividerHeight(0);
         mListView.setPullLoadEnable(true);
 
         mAdapter = new GoodsAdapter(getActivity(), list, fb);
@@ -58,47 +58,56 @@ public class Fragment_Main_02 extends Fragment implements XListView.IXListViewLi
 //			mListView.setPullLoadEnable(false);
         }
 
-        mListView.setXListViewListener(this);
+        mListView.setXListViewListener(ixListViewListener);
         mHandler = new Handler();
+        mListView.firstRefresh();
 
         return view;
     }
 
-    private void geneUploadItems() {
+    XListView.IXListViewListener ixListViewListener = new XListView.IXListViewListener() {
+        @Override
+        public void onFirshResh() {
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    onLoad();
+                }
+            }, 10000);
 
-//		if (load_more != false) {
-//
-//			for (int i = 0; i != 50; ++i) {
-//				// i从0开始
-//				show_num = diedline + 1;
-//				items.add("refresh cnt " + show_num);
-//			}
-//
-//			diedline = show_num;
-//
-//			if (items.size() > 50) {
-//
-//				load_more = false;
-//				// mListView.setPullLoadEnable(false);// 加载更多控件动态控制屏蔽
-//				tag = true;
-//			}
-//
-//		}
-
-    }
-
-    private void geneRefreshItems() {
-
-        for (int i = 0; i != 50; ++i) {
-            show_num = start + i;
-//			items.add("refresh cnt " + show_num);
+            ToastUtil.showToast(getActivity(),"初次加载");
         }
 
-        diedline = show_num;
+        @Override
+        public void onRefresh() {
 
-    }
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    onLoad();
+                }
+            }, 3000);
+
+            ToastUtil.showToast(getActivity(),"刷新");
+
+        }
+
+        @Override
+        public void onLoadMore() {
+
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    onLoad();
+                }
+            }, 5000);
+
+        }
+    };
+
 
     private void onLoad() {
+
         mListView.stopRefresh();
         mListView.stopLoadMore();
         mListView.setRefreshTime("刚刚");
@@ -109,37 +118,6 @@ public class Fragment_Main_02 extends Fragment implements XListView.IXListViewLi
 
         if (tag) {
             mListView.setFooterText(false, "到底了~");
-        }
-    }
-
-    @Override
-    public void onRefresh() {
-
-        tag = false;
-
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-//				start = start - 1;
-//				items.clear();
-//				geneRefreshItems();
-//				mAdapter = new DoctorsAdapter(getActivity(),
-//						list, fb);
-//				mListView.setAdapter(mAdapter);
-                onLoad();
-            }
-        }, 2000);
-    }
-
-    @Override
-    public void onLoadMore() {
-
-        tag = false;
-
-        if (list != null && list.size() > 0) {
-            new TaskLoadMore(list.size() + 1).execute();
-        } else {
-            new TaskLoadMore(1).execute();
         }
     }
 

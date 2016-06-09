@@ -33,6 +33,10 @@
         <activity android:name=".SplashActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name=".SettingActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
         <activity android:name=".PersonalInfos" android:theme="@android:style/Theme.NoTitleBar"></activity>
+        <activity android:name=".PersonalInfoChangeActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+
+
+
 
 
     </application>

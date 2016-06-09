@@ -155,7 +155,7 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
                 case R.id.foget:
 
                     Intent intent2 = new Intent();
-                    intent2.putExtra("type",typeRegister);
+                    intent2.putExtra("type",typeForget);
                     intent2.setClass(context, RegisteActivity.class);
                     startActivityForResult(intent2, FLAG_REGISTER);
 
@@ -316,7 +316,7 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (data != null) {
+        if (data != null && resultCode == 1) {
             et_username.setText(data.getStringExtra("phone"));
             et_pwd.setText(data.getStringExtra("pwd"));
             new LoginTask().execute();

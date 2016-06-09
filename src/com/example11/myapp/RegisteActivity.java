@@ -3,8 +3,9 @@ package com.example11.myapp;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
+import com.example11.fragments.Fragment_Verify_pwd;
 
-public class RegisteActivity extends FragmentActivity {
+public class RegisteActivity extends FragmentActivity implements Fragment_Verify_pwd.GetType{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +24,11 @@ public class RegisteActivity extends FragmentActivity {
             }
         }
         return true;
+    }
+
+
+    @Override
+    public int getType() {
+        return getIntent().getIntExtra("type",0);
     }
 }

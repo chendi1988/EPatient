@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
+              android:background="#ffffff"
               android:layout_height="match_parent">
 
     <RelativeLayout
@@ -17,9 +18,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:id="@+id/titlemsg"
-                android:text="个人信息"
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
+                android:textColor="@color/title_text_color"
+                android:textSize="@dimen/title_size" />
 
         <Button
                 android:id="@+id/save"
@@ -32,17 +32,13 @@
                 android:textSize="16sp"/>
     </RelativeLayout>
 
-        <EditText
-                android:id="@+id/username"
-                android:layout_width="fill_parent"
-                android:layout_height="@dimen/default_edittext_height"
-                android:inputType="phone"
-                android:paddingRight="60dp"
-                android:background="@drawable/login_edite_style"
-                android:hint="手机号码"
-                android:textColorHint="#666666"
-                android:maxLength="11"
-                android:paddingLeft="50dp">
-        </EditText>
+    <EditText
+            android:id="@+id/item"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/default_edittext_height"
+            android:background="@drawable/login_edite_style"
+            android:textColorHint="#666666"
+            android:layout_margin="30dp">
+    </EditText>
 
 </LinearLayout>
