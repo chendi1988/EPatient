@@ -37,6 +37,26 @@
             android:layout_width="fill_parent"
             android:layout_height="@dimen/default_edittext_height"
             android:background="@drawable/login_edite_style"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
+            android:textColorHint="#666666"
+            android:layout_margin="30dp">
+    </EditText>
+
+    <EditText
+            android:id="@+id/item_addr"
+            android:layout_width="fill_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_edite_style"
+            android:gravity="left|top"
+            android:lines="5"
+            android:maxLines="5"
+            android:maxEms="100"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="10dp"
             android:textColorHint="#666666"
             android:layout_margin="30dp">
     </EditText>

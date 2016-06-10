@@ -56,6 +56,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
+                        android:gravity="right"
                         android:hint="输入姓名"
                         android:textColor="#353535"
                         android:textSize="16sp" />
@@ -93,6 +94,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
+                        android:gravity="right"
                         android:hint="未设置"
                         android:textColor="#353535"
                         android:textSize="16sp" />
@@ -130,6 +132,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
+                        android:gravity="right"
                         android:hint="未设置"
                         android:textColor="#353535"
                         android:textSize="16sp" />
@@ -167,6 +170,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
+                        android:gravity="right"
                         android:hint="未设置"
                         android:textColor="#353535"
                         android:textSize="16sp" />
@@ -193,7 +197,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="体重"
+                        android:text="体重(kg)"
                         android:textColor="#353535"
                         android:textSize="16sp" />
 
@@ -204,6 +208,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
+                        android:gravity="right"
                         android:hint="未设置"
                         android:textColor="#353535"
                         android:textSize="16sp" />
@@ -241,6 +246,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
+                        android:gravity="right"
                         android:hint="未设置"
                         android:textColor="#353535"
                         android:textSize="16sp" />
@@ -257,28 +263,30 @@
             <RelativeLayout
                     android:id="@+id/personal_address_item"
                     android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/btn_list_item_bg"
                     android:clickable="true"
-            >
+                    >
 
                 <TextView
+                        android:id="@+id/lable_addr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
                         android:text="收货地址"
                         android:textColor="#353535"
                         android:textSize="16sp" />
 
                 <TextView
                         android:id="@+id/personal_address"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"
-                        android:hint="填写地址"
+                        android:layout_below="@id/lable_addr"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="20dp"
+                        android:hint="未设置"
                         android:textColor="#353535"
                         android:textSize="16sp" />
 
@@ -292,11 +300,13 @@
             </RelativeLayout>
 
             <Button
-                    android:id="@+id/login"
+                    android:id="@+id/save"
                     android:layout_width="fill_parent"
                     android:layout_height="45dp"
                     android:layout_below="@id/personal_address_item"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@drawable/btn_register_bg"
                     android:textColor="@android:color/white"
                     android:gravity="center"

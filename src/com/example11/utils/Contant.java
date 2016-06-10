@@ -22,6 +22,9 @@ public class Contant {
     //登录
     public static final String URL_LOGIN = URL_HOST + "do_login";
 
+    //更新用户信息
+    public static final String URL_UPDATE_INFO = URL_HOST + "upd_userinfo";
+
     //商品列表加载
     public static final String URL_GOODS = URL_HOST + "get_goods";
 
@@ -30,6 +33,9 @@ public class Contant {
 
 
     public static final int START_PERSONAL_ACTIVITY = 0;
+
+
+
 
 
 

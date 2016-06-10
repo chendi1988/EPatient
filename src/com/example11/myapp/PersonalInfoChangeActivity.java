@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
@@ -17,9 +18,13 @@ import android.widget.TextView;
 public class PersonalInfoChangeActivity extends Activity {
 
     public int type = 0;
+    public String value="";
 
     TextView titlemsg;
     EditText item;
+
+
+    EditText item_addr;
     Button save;
 
     @Override
@@ -35,16 +40,18 @@ public class PersonalInfoChangeActivity extends Activity {
 
         titlemsg = (TextView) findViewById(R.id.titlemsg);
         item = (EditText) findViewById(R.id.item);
+        item_addr = (EditText) findViewById(R.id.item_addr);
         save = (Button) findViewById(R.id.save);
         type = getIntent().getIntExtra("item", 0);
+        value = getIntent().getStringExtra("value");
+
         switch (type) {
             case 0:
 
                 titlemsg.setText("填写姓名");
-                item.setMaxEms(5);
+                item.setFilters(new InputFilter[]{ new  InputFilter.LengthFilter(5)});
                 item.setSingleLine();
                 item.setHint("填写姓名");
-                save.setOnClickListener(onCLick);
 
                 break;
 
@@ -55,7 +62,6 @@ public class PersonalInfoChangeActivity extends Activity {
                 item.setSingleLine();
                 item.addTextChangedListener(new EditChangedListener());
                 item.setHint("填写年龄");
-                save.setOnClickListener(onCLick);
 
                 break;
 
@@ -66,7 +72,6 @@ public class PersonalInfoChangeActivity extends Activity {
                 item.addTextChangedListener(new EditChangedListener());
                 item.setSingleLine();
                 item.setHint("填写身高");
-                save.setOnClickListener(onCLick);
 
                 break;
 
@@ -77,19 +82,19 @@ public class PersonalInfoChangeActivity extends Activity {
                 item.addTextChangedListener(new EditChangedListener());
                 item.setSingleLine();
                 item.setHint("填写体重");
-                save.setOnClickListener(onCLick);
 
                 break;
 
             case 6:
 
                 titlemsg.setText("填写收货地址");
-                item.setInputType(InputType.TYPE_CLASS_NUMBER);
-                item.addTextChangedListener(new EditChangedListener());
-                item.setMaxLines(5);
-                item.setLines(5);
-                item.setHint("填写收货地址");
-                save.setOnClickListener(onCLick);
+//                item.setHeight(200);
+//                item.setMaxLines(5);
+//                item.setLines(5);
+//                item.setHint("填写收货地址");
+                item.setVisibility(View.GONE);
+                item_addr.setVisibility(View.VISIBLE);
+
 
                 break;
 
@@ -98,13 +103,22 @@ public class PersonalInfoChangeActivity extends Activity {
 
         }
 
+        item.setText(value);
+        save.setOnClickListener(onCLick);
+
     }
 
     View.OnClickListener onCLick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            String itemStr = item.getText().toString().trim();
+            String itemStr = "";
+
+            if(type == 6){
+                itemStr = item_addr.getText().toString().trim();
+            }else{
+                itemStr = item.getText().toString().trim();
+            }
 
             if (!itemStr.equals("") && itemStr.length() > 0) {
                 Intent intent = new Intent();
@@ -126,37 +140,37 @@ public class PersonalInfoChangeActivity extends Activity {
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
+            String num = item.getText().toString().trim();
             switch (type){
                 case 0:
                     break;
 
                 case 2:
 
-                    if (Integer.parseInt(item.getText().toString().trim()) > 14) {
-                        item.setMaxEms(2);
+                    if (!num.equals("")  && Integer.parseInt(num) > 14) {
+                        item.setFilters(new InputFilter[]{ new  InputFilter.LengthFilter(2)});
                     } else {
-                        item.setMaxEms(3);
+                        item.setFilters(new InputFilter[]{ new  InputFilter.LengthFilter(3)});
                     }
 
                     break;
 
                 case 3:
 
-                    if (Integer.parseInt(item.getText().toString().trim()) > 24) {
-                        item.setMaxEms(2);
+                    if (!num.equals("")  &&  Integer.parseInt(num) > 24) {
+                        item.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(2)});
                     } else {
-                        item.setMaxEms(3);
+                        item.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
                     }
 
                     break;
 
                 case 4:
 
-                    if (Integer.parseInt(item.getText().toString().trim()) > 20) {
-                        item.setMaxEms(2);
+                    if (!num.equals("")  && Integer.parseInt(num) > 20) {
+                        item.setFilters(new InputFilter[]{ new InputFilter.LengthFilter(2)});
                     } else {
-                        item.setMaxEms(3);
+                        item.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
                     }
 
                     break;
@@ -176,5 +190,11 @@ public class PersonalInfoChangeActivity extends Activity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
 
+        setResult(10);
+
+        super.onBackPressed();
+    }
 }

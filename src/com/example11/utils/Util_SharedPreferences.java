@@ -46,6 +46,14 @@ public class Util_SharedPreferences {
 
     }
 
+    public SharedPreferences getSharedPreferences(Context c,String XML_Name){
+
+        sp = c.getSharedPreferences(XML_Name, Activity.MODE_PRIVATE);
+
+        return sp;
+
+    }
+
     /**
      * 以String类型写入xml
      *
