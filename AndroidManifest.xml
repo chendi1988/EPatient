@@ -36,6 +36,9 @@
         <activity android:name=".PersonalInfoChangeActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
 
 
+        <activity android:name=".WebViewActivity" android:theme="@android:style/Theme.NoTitleBar"></activity>
+
+
 
 
 

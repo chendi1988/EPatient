@@ -28,7 +28,16 @@ public class Contant {
     //商品列表加载
     public static final String URL_GOODS = URL_HOST + "get_goods";
 
+    //地区
+    public static final String URL_DQ = URL_HOST + "get_dq";
+    //医院
+    public static final String URL_YY = URL_HOST + "get_yy";
+    //科室
+    public static final String URL_KS = URL_HOST + "get_ks";
+    //名医
+    public static final String URL_MY = URL_HOST + "get_my";
 
+    //用戶信息保存
     public static final String SP_USER = "user.xml";
 
 
@@ -38,6 +47,77 @@ public class Contant {
 
 
 
+    public static String GOODS = "{\"Status\":\"100\",\"result\":[\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"id\":5421,\"photo\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"goodname\":\"会员卡\",\"money\":\"1.00\",\"dec\":\"哈哈哈哈哈哈哈哈\"}\n" +
+            "]}";
 
+
+    public static String DOCTORS = "{\"Status\":\"100\",\"result\":[\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"},\n" +
+            "{\"headerURL\":\"UpLoadFile/Company_0426/20160605031638Hydrangeas.jpg\",\"name\":\"会员卡\",\"descption\":\"哈哈哈哈哈哈哈哈\"}\n" +
+            "]}";
 
 }

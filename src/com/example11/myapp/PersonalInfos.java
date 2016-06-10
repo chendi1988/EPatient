@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.example11.adapters.AnimAdapterUtil;
 import com.example11.utils.Contant;
 import com.example11.utils.HttpPostUtil;
 import com.example11.utils.Util_SharedPreferences;
@@ -114,6 +115,7 @@ public class PersonalInfos extends Activity implements View.OnClickListener {
                 intent.putExtra("value", personal_real_name.getText().toString().trim());
                 intent.setClass(context, PersonalInfoChangeActivity.class);
                 startActivityForResult(intent, 0);
+                AnimAdapterUtil.anim_translate_next(context);
 
                 break;
 
@@ -130,6 +132,7 @@ public class PersonalInfos extends Activity implements View.OnClickListener {
                 intent.putExtra("value", personal_age.getText().toString().trim());
                 intent.setClass(context, PersonalInfoChangeActivity.class);
                 startActivityForResult(intent, 2);
+                AnimAdapterUtil.anim_translate_next(context);
 
                 break;
 
@@ -140,6 +143,7 @@ public class PersonalInfos extends Activity implements View.OnClickListener {
                 intent.putExtra("value", personal_height.getText().toString().trim());
                 intent.setClass(context, PersonalInfoChangeActivity.class);
                 startActivityForResult(intent, 3);
+                AnimAdapterUtil.anim_translate_next(context);
 
                 break;
 
@@ -150,6 +154,7 @@ public class PersonalInfos extends Activity implements View.OnClickListener {
                 intent.putExtra("value", personal_weight.getText().toString().trim());
                 intent.setClass(context, PersonalInfoChangeActivity.class);
                 startActivityForResult(intent, 4);
+                AnimAdapterUtil.anim_translate_next(context);
 
                 break;
 
@@ -163,6 +168,7 @@ public class PersonalInfos extends Activity implements View.OnClickListener {
                 intent.putExtra("value", personal_address.getText().toString().trim());
                 intent.setClass(context, PersonalInfoChangeActivity.class);
                 startActivityForResult(intent, 6);
+                AnimAdapterUtil.anim_translate_next(context);
 
                 break;
 
@@ -229,6 +235,7 @@ public class PersonalInfos extends Activity implements View.OnClickListener {
                         Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER, map);
 
                         finish();
+                        AnimAdapterUtil.anim_translate_back(context);
 
                     }
                 } catch (JSONException e) {

@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import com.example11.adapters.AnimAdapterUtil;
 import com.example11.utils.*;
 import com.example11.view.DialogWaiting;
 import com.example11.view.LinearLayoutView;
@@ -149,6 +150,7 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
                     intent1.putExtra("type",typeRegister);
                     intent1.setClass(context, RegisteActivity.class);
                     startActivityForResult(intent1, FLAG_REGISTER);
+                    AnimAdapterUtil.anim_translate_next(context);
 
                     break;
 
@@ -158,6 +160,7 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
                     intent2.putExtra("type",typeForget);
                     intent2.setClass(context, RegisteActivity.class);
                     startActivityForResult(intent2, FLAG_REGISTER);
+                    AnimAdapterUtil.anim_translate_next(context);
 
                     break;
 
@@ -296,6 +299,7 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
 //                        }
                         setResult(1);
                         finish();
+                        AnimAdapterUtil.anim_translate_back(context);
                     } else {
                         ToastUtil.showToast(context, "登录失败");
                     }
@@ -321,5 +325,12 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
             et_pwd.setText(data.getStringExtra("pwd"));
             new LoginTask().execute();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        AnimAdapterUtil.anim_translate_back(context);
     }
 }

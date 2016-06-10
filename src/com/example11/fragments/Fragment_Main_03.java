@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import com.example11.adapters.AnimAdapterUtil;
 import com.example11.myapp.PersonalInfos;
 import com.example11.myapp.R;
 import com.example11.myapp.SettingActivity;
@@ -63,10 +64,12 @@ public class Fragment_Main_03 extends Fragment implements View.OnClickListener{
 			case R.id.re_personal_info:
 				intent.setClass(getActivity(), PersonalInfos.class);
 				getActivity().startActivity(intent);
+				AnimAdapterUtil.anim_translate_next(getActivity());
 				break;
 			case R.id.re_setting:
 				intent.setClass(getActivity(), SettingActivity.class);
 				getActivity().startActivity(intent);
+				AnimAdapterUtil.anim_translate_next(getActivity());
 				break;
 			case R.id.re_pay_history:
 				break;

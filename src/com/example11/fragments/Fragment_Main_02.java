@@ -1,5 +1,6 @@
 package com.example11.fragments;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,8 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import com.example11.adapters.AnimAdapterUtil;
 import com.example11.adapters.GoodsAdapter;
 import com.example11.myapp.R;
+import com.example11.myapp.WebViewActivity;
+import com.example11.utils.Contant;
 import com.example11.utils.HttpPostUtil;
 import com.example11.utils.ToastUtil;
 import com.example11.view.XListView;
@@ -48,19 +54,51 @@ public class Fragment_Main_02 extends Fragment {
         fb = FinalBitmap.create(getActivity());
 
         mListView = (XListView) view.findViewById(R.id.xListView);
+        mListView.setVerticalScrollBarEnabled(true);
+
         mListView.setDividerHeight(0);
         mListView.setPullLoadEnable(true);
 
         mAdapter = new GoodsAdapter(getActivity(), list, fb);
         mListView.setAdapter(mAdapter);
 
-        if (list != null && list.size() < 10) {
-//			mListView.setPullLoadEnable(false);
-        }
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE://空闲状态
+                        mAdapter.onSetScrollState(false);
+                        break;
+                    case AbsListView.OnScrollListener.SCROLL_STATE_FLING://滚动状态
+                        mAdapter.onSetScrollState(true);
+                        break;
+                    case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL://触摸后滚动
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+            }
+        });
 
         mListView.setXListViewListener(ixListViewListener);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.putExtra("pos",position);
+                intent.setClass(getActivity(), WebViewActivity.class);
+                startActivity(intent);
+                AnimAdapterUtil.anim_translate_next(getActivity());
+            }
+        });
+
         mHandler = new Handler();
-        mListView.firstRefresh();
+//        mListView.firstRefresh();
+
+        new TaskLoadMore(1).execute();
 
         return view;
     }
@@ -75,7 +113,7 @@ public class Fragment_Main_02 extends Fragment {
                 }
             }, 10000);
 
-            ToastUtil.showToast(getActivity(),"初次加载");
+            ToastUtil.showToast(getActivity(), "初次加载");
         }
 
         @Override
@@ -88,19 +126,21 @@ public class Fragment_Main_02 extends Fragment {
                 }
             }, 3000);
 
-            ToastUtil.showToast(getActivity(),"刷新");
+            ToastUtil.showToast(getActivity(), "刷新");
 
         }
 
         @Override
         public void onLoadMore() {
 
-            mHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    onLoad();
-                }
-            }, 5000);
+//            mHandler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    onLoad();
+//                }
+//            }, 5000);
+
+            new TaskLoadMore(list != null ? list.size() + 1 : 1).execute();
 
         }
     };
@@ -171,7 +211,8 @@ public class Fragment_Main_02 extends Fragment {
 
         @Override
         protected String doInBackground(Void... params) {
-            return HttpPostUtil.getPostJsonResult(URL_GOODS, map_more, "");
+//            return HttpPostUtil.getPostJsonResult(URL_GOODS, map_more, "");
+            return Contant.GOODS;
         }
 
         @Override

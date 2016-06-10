@@ -1,6 +1,7 @@
 package com.example11.myapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.example11.adapters.AnimAdapterUtil;
 
 /**
  * Created by chendi on 2016/6/7.
@@ -27,11 +29,13 @@ public class PersonalInfoChangeActivity extends Activity {
     EditText item_addr;
     Button save;
 
+    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personal_info_change_item);
-
+        context = this;
         initView();
 
     }
@@ -125,6 +129,7 @@ public class PersonalInfoChangeActivity extends Activity {
                 intent.putExtra("key", itemStr);
                 setResult(type, intent);
                 finish();
+                AnimAdapterUtil.anim_translate_back(context);
             }
 
         }
@@ -192,9 +197,8 @@ public class PersonalInfoChangeActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-
         setResult(10);
-
         super.onBackPressed();
+        AnimAdapterUtil.anim_translate_back(context);
     }
 }

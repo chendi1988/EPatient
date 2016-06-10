@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example11.myapp.R;
 import net.tsz.afinal.FinalBitmap;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ import java.util.Map;
 public class DoctorsAdapter extends BaseAdapter {
 
     Context Acontext;
-    List<Map<String, Object>> Alist;
+    List<Map<String, Object>> Alist = new ArrayList<Map<String, Object>>();
     ViewHold_02 VH;
     LayoutInflater layoutInflater;
 

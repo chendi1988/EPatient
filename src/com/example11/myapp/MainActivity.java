@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example11.adapters.AnimAdapterUtil;
 import com.example11.fragments.*;
 import com.example11.utils.CheckFormatUtil;
 import com.example11.utils.Contant;
@@ -125,6 +126,7 @@ public class MainActivity extends FragmentActivity {
 				intent.putExtra("target", Contant.START_PERSONAL_ACTIVITY);
 				intent.setClass(context, LoginActivity.class);
 				startActivityForResult(intent,0);
+				AnimAdapterUtil.anim_translate_next(context);
 			}else{
 				index = 2;
 				titlemsg.setText("我的");
