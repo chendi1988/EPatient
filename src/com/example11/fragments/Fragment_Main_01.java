@@ -1,5 +1,6 @@
 package com.example11.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -16,12 +18,11 @@ import android.widget.ListView;
 import com.example11.adapters.AnimAdapterUtil;
 import com.example11.adapters.DoctorsAdapter;
 import com.example11.adapters.GirdDropDownAdapter;
-import com.example11.adapters.ListDropDownAdapter;
+import com.example11.database.EDatabase;
+import com.example11.database.MapDataHelper;
+import com.example11.myapp.DoctorDetailActivity;
 import com.example11.myapp.R;
-import com.example11.myapp.WebViewActivity;
-import com.example11.utils.Contant;
 import com.example11.utils.HttpPostUtil;
-import com.example11.utils.ToastUtil;
 import com.example11.view.DialogLoading;
 import com.example11.view.DropDownMenu;
 import com.example11.view.XListView;
@@ -32,7 +33,7 @@ import org.json.JSONObject;
 
 import java.util.*;
 
-import static com.example11.utils.Contant.URL_GOODS;
+import static com.example11.utils.Contant.URL_DOCTOR;
 
 public class Fragment_Main_01 extends Fragment {
     private XListView mListView;
@@ -54,49 +55,62 @@ public class Fragment_Main_01 extends Fragment {
     private List<View> popupViews = new ArrayList<View>();
 
     private GirdDropDownAdapter cityAdapter;
-    private ListDropDownAdapter hospitalAdapter;
-    private ListDropDownAdapter departmentAdapter;
-    private ListDropDownAdapter famouAdapter;
+    private GirdDropDownAdapter hospitalAdapter;
+    private GirdDropDownAdapter departmentAdapter;
+    private GirdDropDownAdapter famouAdapter;
 
-    private String citys[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
-    private String hospitals[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
-    private String departments[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
-    private String famous[] = {"不限", "武汉", "北京", "上海", "成都", "广州", "深圳", "重庆", "天津", "西安", "南京", "杭州"};
+    List<Map<String, String>> dqList = new ArrayList<Map<String, String>>();
+    List<Map<String, String>> yyList = new ArrayList<Map<String, String>>();
+    List<Map<String, String>> ksList = new ArrayList<Map<String, String>>();
+    List<Map<String, String>> myList = new ArrayList<Map<String, String>>();
+
+    Context context;
+
+    String dq = "";
+    String yy = "";
+    String ks = "";
+    String my = "";
+    int index = 1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main_01, null);
         view.setBackgroundColor(Color.WHITE);
-
+        context = getActivity();
         mDropDownMenu = (DropDownMenu) view.findViewById(R.id.dropDownMenu);
 
         initView(view);
+
         return view;
     }
 
     private void initView(View view) {
         //init city menu
+        dqList = MapDataHelper.getInstance(context).getAllList(EDatabase.TABLE_DQ_NAME);
         final ListView cityView = new ListView(view.getContext());
-        cityAdapter = new GirdDropDownAdapter(view.getContext(), Arrays.asList(citys));
+        cityAdapter = new GirdDropDownAdapter(view.getContext(), dqList);
         cityView.setDividerHeight(0);
         cityView.setAdapter(cityAdapter);
 
         //init hospital menu
+        yyList = MapDataHelper.getInstance(context).getAllList(EDatabase.TABLE_YY_NAME);
         final ListView hospitalView = new ListView(view.getContext());
         hospitalView.setDividerHeight(0);
-        hospitalAdapter = new ListDropDownAdapter(view.getContext(), Arrays.asList(hospitals));
+        hospitalAdapter = new GirdDropDownAdapter(view.getContext(), yyList);
         hospitalView.setAdapter(hospitalAdapter);
 
         //init department menu
+        ksList = MapDataHelper.getInstance(context).getAllList(EDatabase.TABLE_KS_NAME);
         final ListView departmentView = new ListView(view.getContext());
         departmentView.setDividerHeight(0);
-        departmentAdapter = new ListDropDownAdapter(view.getContext(), Arrays.asList(departments));
+        departmentAdapter = new GirdDropDownAdapter(view.getContext(), ksList);
         departmentView.setAdapter(departmentAdapter);
 
         //init famous menu
+        myList = MapDataHelper.getInstance(context).getAllList(EDatabase.TABLE_MY_NAME);
         final ListView famouView = new ListView(view.getContext());
         famouView.setDividerHeight(0);
-        famouAdapter = new ListDropDownAdapter(view.getContext(), Arrays.asList(famous));
+        famouAdapter = new GirdDropDownAdapter(view.getContext(), myList);
         famouView.setAdapter(famouAdapter);
 
         //init popupViews
@@ -110,8 +124,19 @@ public class Fragment_Main_01 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 cityAdapter.setCheckItem(position);
-                mDropDownMenu.setTabText(position == 0 ? headers[0] : citys[position]);
+                if (position == 0) {
+                    dq = "";
+                } else {
+                    dq = dqList.get(position).get("ID");
+                }
+                index = 1;
+                tag = false;
+                datas = new ArrayList<Map<String, Object>>();
+                mAdapter = new DoctorsAdapter(getActivity(), datas, fb);
+                mListView.setAdapter(mAdapter);
+                mDropDownMenu.setTabText(position == 0 ? headers[0] : dqList.get(position).get("Name"));
                 mDropDownMenu.closeMenu();
+                new TaskLoadMore(1, false).execute();
             }
         });
 
@@ -119,8 +144,19 @@ public class Fragment_Main_01 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 hospitalAdapter.setCheckItem(position);
-                mDropDownMenu.setTabText(position == 0 ? headers[1] : hospitals[position]);
+                if (position == 0) {
+                    yy = "";
+                } else {
+                    yy = yyList.get(position).get("ID");
+                }
+                index = 1;
+                tag = false;
+                datas = new ArrayList<Map<String, Object>>();
+                mAdapter = new DoctorsAdapter(getActivity(), datas, fb);
+                mListView.setAdapter(mAdapter);
+                mDropDownMenu.setTabText(position == 0 ? headers[1] : yyList.get(position).get("Name"));
                 mDropDownMenu.closeMenu();
+                new TaskLoadMore(1, false).execute();
             }
         });
 
@@ -128,8 +164,19 @@ public class Fragment_Main_01 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 departmentAdapter.setCheckItem(position);
-                mDropDownMenu.setTabText(position == 0 ? headers[2] : departments[position]);
+                if (position == 0) {
+                    ks = "";
+                } else {
+                    ks = ksList.get(position).get("ID");
+                }
+                index = 1;
+                tag = false;
+                datas = new ArrayList<Map<String, Object>>();
+                mAdapter = new DoctorsAdapter(getActivity(), datas, fb);
+                mListView.setAdapter(mAdapter);
+                mDropDownMenu.setTabText(position == 0 ? headers[2] : ksList.get(position).get("Name"));
                 mDropDownMenu.closeMenu();
+                new TaskLoadMore(1, false).execute();
             }
         });
 
@@ -137,8 +184,18 @@ public class Fragment_Main_01 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 famouAdapter.setCheckItem(position);
-                mDropDownMenu.setTabText(position == 0 ? headers[3] : famous[position]);
+                if (position == 0) {
+                    my = "";
+                } else {
+                    my = myList.get(position).get("ID");
+                }
+                index = 1;
+                datas = new ArrayList<Map<String, Object>>();
+                mAdapter = new DoctorsAdapter(getActivity(), datas, fb);
+                mListView.setAdapter(mAdapter);
+                mDropDownMenu.setTabText(position == 0 ? headers[3] : myList.get(position).get("Name"));
                 mDropDownMenu.closeMenu();
+                new TaskLoadMore(1, false).execute();
             }
         });
 
@@ -151,7 +208,7 @@ public class Fragment_Main_01 extends Fragment {
         mListView.setCacheColorHint(Color.alpha(R.color.touming));
         mListView.setScrollbarFadingEnabled(true);
         setListViewHeightBasedOnChildren(mListView);
-        mListView.setPullLoadEnable(true);
+        mListView.setPullLoadEnable(false);
         mListView.setDividerHeight(0);
 
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -178,13 +235,9 @@ public class Fragment_Main_01 extends Fragment {
         mListView.setXListViewListener(new XListView.IXListViewListener() {
             @Override
             public void onRefresh() {
+                datas.clear();
+                new TaskLoadMore(1, false).execute();
 
-                mHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        onLoad();
-                    }
-                }, 3000);
 
             }
 
@@ -195,7 +248,7 @@ public class Fragment_Main_01 extends Fragment {
             @Override
             public void onLoadMore() {
 
-                new TaskLoadMore(1, false).execute();
+                new TaskLoadMore((datas == null ? 0 : datas.size()) + 1, false).execute();
 
             }
         });
@@ -206,11 +259,28 @@ public class Fragment_Main_01 extends Fragment {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("xm", datas.get(position - 1).get("xm").toString());
+                bundle.putString("zjmz", datas.get(position - 1).get("zjmz").toString());
+                bundle.putString("sc", datas.get(position - 1).get("sc").toString());
+                bundle.putString("jj", datas.get(position - 1).get("jj").toString());
+
                 Intent intent = new Intent();
-                intent.putExtra("pos",position);
-                intent.setClass(getActivity(), WebViewActivity.class);
+                intent.putExtra("infos", bundle);
+                intent.setClass(getActivity(), DoctorDetailActivity.class);
                 startActivity(intent);
                 AnimAdapterUtil.anim_translate_next(getActivity());
+            }
+        });
+
+        mListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                mDropDownMenu.closeMenu();
+
+                return false;
             }
         });
 
@@ -220,40 +290,6 @@ public class Fragment_Main_01 extends Fragment {
 
         new TaskLoadMore(1, true).execute();
 
-    }
-
-
-    class TaskRefresh extends AsyncTask<Void, Void, String> {
-
-        Map<String, String> map_ref;
-
-        public TaskRefresh(int size) {
-            map_ref = new HashMap<String, String>();
-            map_ref.put("index", "1");
-
-            if (size > 0) {
-                map_ref.put("index", size + "");
-            } else {
-                map_ref.put("index", size + "");
-            }
-
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            return HttpPostUtil.getPostJsonResult(URL_GOODS, map_ref, "");
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            ToastUtil.showToast(getActivity(), "Fg_1" + s);
-        }
     }
 
 
@@ -268,6 +304,10 @@ public class Fragment_Main_01 extends Fragment {
         public TaskLoadMore(int index, boolean showDialog) {
             map_more = new HashMap<String, String>();
             map_more.put("index", index + "");
+            map_more.put("dq", dq);
+            map_more.put("yy", yy);
+            map_more.put("ks", ks);
+            map_more.put("my", my);
 
             this.showDialog = showDialog;
         }
@@ -291,15 +331,12 @@ public class Fragment_Main_01 extends Fragment {
 
         @Override
         protected String doInBackground(Void... params) {
-//            return HttpPostUtil.getPostJsonResult(URL_GOODS, map_more, "");
-            return Contant.DOCTORS;
+            return HttpPostUtil.getPostJsonResult(URL_DOCTOR, map_more, "");
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-
-            ToastUtil.showToast(getActivity(), "Fg_1_more" + s);
 
             if (showDialog) {
                 if (loading != null && loading.isShowing()) {
@@ -307,30 +344,60 @@ public class Fragment_Main_01 extends Fragment {
                 }
             }
 
-            onLoad();
-
             if (s != null) {
+
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     if (jsonObject.optString("Status").equals("100")) {
-                        JSONArray jsonArray = jsonObject.getJSONArray("result");
-                        Map<String, Object> map_item;
-                        for (int i = 0; i < jsonArray.length(); i++) {
-                            jsonObject = jsonArray.getJSONObject(i);
-                            map_item = new HashMap<String, Object>();
-                            map_item.put("headerURL", jsonObject.optString("headerURL"));
-                            map_item.put("name", jsonObject.optString("name"));
-                            map_item.put("descption", jsonObject.optString("descption"));
-                            datas.add(map_item);
-                        }
 
+                        if (s.equals("")) {
+
+                            tag = true;
+
+                        } else {
+
+                            JSONArray jsonArray = jsonObject.getJSONArray("result");
+
+                            Map<String, Object> map_item;
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                jsonObject = jsonArray.getJSONObject(i);
+                                map_item = new HashMap<String, Object>();
+                                map_item.put("id", jsonObject.optString("id"));
+                                map_item.put("name", jsonObject.optString("name"));
+                                map_item.put("sex", jsonObject.optString("sex"));
+                                map_item.put("phone", jsonObject.optString("phone"));
+                                map_item.put("updatetime", jsonObject.optString("updatetime"));
+                                map_item.put("ks", jsonObject.optString("ks"));
+                                map_item.put("yy", jsonObject.optString("yy"));
+                                map_item.put("xm", jsonObject.optString("xm"));
+                                map_item.put("zjmz", jsonObject.optString("zjmz"));
+                                map_item.put("sc", jsonObject.optString("sc"));
+                                map_item.put("jj", jsonObject.optString("jj"));
+                                map_item.put("dq", jsonObject.optString("dq"));
+                                map_item.put("my", jsonObject.optString("my"));
+                                datas.add(map_item);
+                            }
+
+                            if (jsonArray.length() < 5 && datas.size() < 5) {
+                                mListView.setPullLoadEnable(false);
+                            } else if (datas.size() > 5 && jsonArray.length() < 5) {
+                                tag = true;
+                            } else {
+                                tag = false;
+                                mListView.setPullLoadEnable(true);
+                            }
+
+                            mAdapter.notifyDataSetChanged();
+                        }
                     }
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
+
+            onLoad();
 
         }
     }
@@ -340,10 +407,6 @@ public class Fragment_Main_01 extends Fragment {
         mListView.stopRefresh();
         mListView.stopLoadMore();
         mListView.setRefreshTime("刚刚");
-
-        if (datas != null && datas.size() > 15) {
-            mListView.setPullLoadEnable(true);
-        }
 
         if (tag) {
             mListView.setFooterText(false, "到底了~");

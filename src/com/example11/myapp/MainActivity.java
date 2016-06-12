@@ -207,7 +207,7 @@ public class MainActivity extends FragmentActivity {
 						Toast.LENGTH_SHORT).show();
 				exitTime = System.currentTimeMillis();
 
-				Util_SharedPreferences.getInstance().clearData(context,Contant.SP_USER);
+//				Util_SharedPreferences.getInstance().clearData(context,Contant.SP_USER);
 			} else {
 				moveTaskToBack(false);
 				finish();

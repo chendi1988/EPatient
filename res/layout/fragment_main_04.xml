@@ -4,11 +4,31 @@
     android:background="#ffffff"
     android:layout_height="fill_parent" >
 
-     <TextView 
-       android:id="@+id/tv"
-       android:layout_width="fill_parent"
-       android:layout_height="fill_parent"
-       android:text="4"
-       android:gravity="center_vertical|center_horizontal"/>
+     <FrameLayout
+             android:layout_below="@id/title"
+             android:orientation="vertical"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+     >
+          <WebView
+                  android:id="@+id/web"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:background="#000"
+                  android:scrollbars="none"
+          ></WebView>
+
+          <ProgressBar
+                  android:id="@+id/progress"
+                  android:layout_width="fill_parent"
+                  android:layout_height="2dp"
+                  android:visibility="gone"
+                  style="?android:attr/progressBarStyleHorizontal"
+                  android:layout_gravity="top"
+                  android:max="100"
+                  android:progress="50"
+          />
+
+     </FrameLayout>
 
 </LinearLayout>

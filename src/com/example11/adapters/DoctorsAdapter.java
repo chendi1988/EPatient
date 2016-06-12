@@ -79,11 +79,11 @@ public class DoctorsAdapter extends BaseAdapter {
         }
 
         if(onScroll){
-            fb.display(VH.img_header,Alist.get(position).get("headerURL").toString());
+            fb.display(VH.img_header,Alist.get(position).get("photo").toString());
         }
 
-        VH.name.setText( Alist.get(position).get("name").toString());
-        VH.descption.setText( Alist.get(position).get("descption").toString());
+        VH.name.setText( Alist.get(position).get("xm").toString());
+        VH.descption.setText( Alist.get(position).get("jj").toString());
 
         return convertView;
     }

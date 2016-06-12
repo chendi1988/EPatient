@@ -14,7 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.example11.myapp.R;
 import com.example11.utils.CheckFormatUtil;
+import com.example11.utils.Contant;
+import com.example11.utils.HttpPostUtil;
 import com.example11.utils.ToastUtil;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -87,19 +91,18 @@ public class Fragment_Verify_Phone extends Fragment {
 
         @Override
         protected String doInBackground(Void... params) {
-//            return HttpPostUtil.getPostJsonResult(Contant.URL_SEND_IFYCODE, map, "");
-            return "s";
+            return HttpPostUtil.getPostJsonResult(Contant.URL_SEND_IFYCODE, map, "");
+//            return "s";
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-//            if (s != null) {
-            if (s.equals("s")) {
-//                try {
-//                    JSONObject jsonObject = new JSONObject(s);
-//                    if (jsonObject.optString("Status").equals("100")) {
+            if (s != null) {
+                try {
+                    JSONObject jsonObject = new JSONObject(s);
+                    if (jsonObject.optString("Status").equals("100")) {
 
                         ToastUtil.showToast(getActivity(), "验证码已发送");
 
@@ -114,11 +117,11 @@ public class Fragment_Verify_Phone extends Fragment {
                         ft.replace(R.id.register, fragmentVerifyVerify);
                         ft.addToBackStack(null);
                         ft.commit();
-//                    }
+                    }
 
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             } else {
 
                 ToastUtil.showToast(getActivity(), "网络请求失败，请稍后尝试");

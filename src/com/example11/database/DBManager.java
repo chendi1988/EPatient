@@ -97,11 +97,12 @@ public class DBManager {
             fd.setAccessible(true);
             String fieldName = fd.getName();
             //剔除主键id值得保存，由于框架默认设置id为主键自动增长
-            if (fieldName.equalsIgnoreCase("id") || fieldName.equalsIgnoreCase("_id")) {
+            if (fieldName.equalsIgnoreCase("uid") || fieldName.equalsIgnoreCase("_id")) {
                 continue;
             }
             putValues(values, fd, obj);
         }
+
         return db.insert(DBUtils.getTableName(modeClass), null, values);
     }
 

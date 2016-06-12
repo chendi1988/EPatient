@@ -130,13 +130,13 @@ public class Fragment_Verify_pwd extends Fragment {
 
                     String pwdStr = pwd.getText().toString().trim();
                     if (pwdStr.length() > 5) {
-//                        new RegisterTask(pwdStr).execute();
+                        new RegisterTask(pwdStr).execute();
 
-                        Intent intent = new Intent();
-                        intent.putExtra("phone",vBundle.getString("phone"));
-                        intent.putExtra("pwd",pwdStr);
-                        getActivity().setResult(1,intent);
-                        getActivity().finish();
+//                        Intent intent = new Intent();
+//                        intent.putExtra("phone",vBundle.getString("phone"));
+//                        intent.putExtra("pwd",pwdStr);
+//                        getActivity().setResult(1,intent);
+//                        getActivity().finish();
                     } else {
                         ToastUtil.showToast(getActivity(), "输入长度6~10位密码");
                     }

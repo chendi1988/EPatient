@@ -10,12 +10,13 @@ import android.widget.TextView;
 import com.example11.myapp.R;
 
 import java.util.List;
+import java.util.Map;
 
 
 public class ListDropDownAdapter extends BaseAdapter {
 
     private Context context;
-    private List<String> list;
+    private List<Map<String,String>> list;
     private int checkItemPosition = 0;
 
     public void setCheckItem(int position) {
@@ -23,7 +24,7 @@ public class ListDropDownAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public ListDropDownAdapter(Context context, List<String> list) {
+    public ListDropDownAdapter(Context context, List<Map<String,String>> list) {
         this.context = context;
         this.list = list;
     }
@@ -59,7 +60,7 @@ public class ListDropDownAdapter extends BaseAdapter {
     }
 
     private void fillValue(int position, ViewHolder viewHolder) {
-        viewHolder.mText.setText(list.get(position));
+        viewHolder.mText.setText(list.get(position).get("Name"));
         if (checkItemPosition != -1) {
             if (checkItemPosition == position) {
                 viewHolder.mText.setTextColor(context.getResources().getColor(R.color.drop_down_selected));

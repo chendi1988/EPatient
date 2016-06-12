@@ -11,6 +11,7 @@ import com.example11.adapters.AnimAdapterUtil;
 import com.example11.myapp.PersonalInfos;
 import com.example11.myapp.R;
 import com.example11.myapp.SettingActivity;
+import com.zbar.lib.CaptureActivity;
 
 public class Fragment_Main_03 extends Fragment implements View.OnClickListener{
 
@@ -74,6 +75,11 @@ public class Fragment_Main_03 extends Fragment implements View.OnClickListener{
 			case R.id.re_pay_history:
 				break;
 			case R.id.re_bind_hard:
+
+				intent.setClass(getActivity(), CaptureActivity.class);
+				getActivity().startActivity(intent);
+				AnimAdapterUtil.anim_translate_next(getActivity());
+
 				break;
 			case R.id.re_health_report:
 				break;

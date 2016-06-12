@@ -4,6 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import com.example11.EntityClass.EntityDq;
+import com.example11.EntityClass.EntityKs;
+import com.example11.EntityClass.EntityMy;
+import com.example11.EntityClass.EntityYy;
 
 import java.lang.reflect.Field;
 
@@ -62,7 +66,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
      */
     private void createTable(SQLiteDatabase db) {
         //根据传过来的class名字创建数据表
-        db.execSQL(getCreateTableSql(mClazz));
+        db.execSQL(getCreateTableSql(EntityDq.class));
+        db.execSQL(getCreateTableSql(EntityYy.class));
+        db.execSQL(getCreateTableSql(EntityKs.class));
+        db.execSQL(getCreateTableSql(EntityMy.class));
     }
 
     /**
@@ -75,13 +82,13 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         StringBuilder sb = new StringBuilder();
         //将类名作为表名
         String tabName = DBUtils.getTableName(clazz);
-        sb.append("create table ").append(tabName).append(" (id  INTEGER PRIMARY KEY AUTOINCREMENT, ");
+        sb.append("create table ").append(tabName).append(" (uid  INTEGER PRIMARY KEY AUTOINCREMENT, ");
         //得到类中所有属性对象数组
         Field[] fields = clazz.getDeclaredFields();
         for (Field fd : fields) {
             String fieldName = fd.getName();
             String fieldType = fd.getType().getName();
-            if (fieldName.equalsIgnoreCase("_id") || fieldName.equalsIgnoreCase("id")) {
+            if (fieldName.equalsIgnoreCase("_id") || fieldName.equalsIgnoreCase("uid")) {
                 continue;
             } else {
                 sb.append(fieldName).append(DBUtils.getColumnType(fieldType)).append(", ");

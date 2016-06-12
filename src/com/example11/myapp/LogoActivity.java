@@ -3,20 +3,14 @@ package com.example11.myapp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import com.example11.EntityClass.EntityDq;
-import com.example11.EntityClass.EntityKs;
-import com.example11.EntityClass.EntityMy;
-import com.example11.EntityClass.EntityYy;
-import com.example11.adapters.AnimAdapterUtil;
-import com.example11.database.DBManager;
+import com.example11.database.EDatabase;
+import com.example11.database.MapDataHelper;
 import com.example11.database.MyDatabaseHelper;
 import com.example11.utils.Contant;
 import com.example11.utils.HttpGetUtil;
-import com.example11.utils.ToastUtil;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,248 +20,148 @@ import org.json.JSONObject;
  */
 public class LogoActivity extends Activity {
 
-    private static final int sleepTime = 500;
+    private static final int sleepTime = 2000;
 
     Context context;
 
-    boolean loadDqErr = false;
-    int numDQ = 0;
-    boolean loadYyErr = false;
-    int numYY = 0;
-    boolean loadKsErr = false;
-    int numKS = 0;
-    boolean loadMyErr = false;
-    int numMY = 0;
-
-    long start = 0;
+    boolean loadDqSuc = false;
+    boolean loadYySuc = false;
+    boolean loadKsSuc = false;
+    boolean loadMySuc = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final View view = View.inflate(this, R.layout.activity_logo_start, null);
         setContentView(view);
         super.onCreate(savedInstanceState);
-
         context = this;
-        MyDatabaseHelper.getInstance(this,EntityDq.class);
-        MyDatabaseHelper.getInstance(this,EntityYy.class);
-        MyDatabaseHelper.getInstance(this,EntityKs.class);
-        MyDatabaseHelper.getInstance(this,EntityMy.class);
-
+        new MyDatabaseHelper(context);
         AlphaAnimation animation = new AlphaAnimation(0.3f, 1.0f);
-        animation.setDuration(500);
+        animation.setDuration(1500);
         view.startAnimation(animation);
-
-        start = System.currentTimeMillis();
-        new GetDQsTask().execute();
-        new GetYYsTask().execute();
-        new GetKSsTask().execute();
-        new GetMYsTask().execute();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-    }
+        new Thread(new Runnable() {
+            public void run() {
+                long start = System.currentTimeMillis();
+                //执行加载数据的逻辑
 
-    class GetDQsTask extends AsyncTask<Void,Void,String>{
+                String Diqus = null;
+                for(int i = 0 ;i<3;i++){
+                    Diqus = HttpGetUtil.getGetJsonResult(Contant.URL_DQ);
+                    if(Diqus!=null){
+                        try {
+                            JSONObject dqJson = new JSONObject(Diqus);
+                            if(dqJson.optString("Status").equals("100")){
+                                JSONArray dqArr = dqJson.getJSONArray("result");
+                                for(int dq = 0;dq<dqArr.length();dq++){
+                                    dqJson = dqArr.getJSONObject(dq);
 
-        @Override
-        protected String doInBackground(Void... params) {
-            return HttpGetUtil.getGetJsonResult(Contant.URL_DQ);
-        }
+                                    insert(EDatabase.TABLE_DQ_NAME, dqJson);
+                                }
+                                loadDqSuc = true;
+                                break;
+                            }
 
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            if(s!=null){
-                try {
-                    JSONObject dqJson = new JSONObject(s);
-                    if(dqJson.optString("Status").equals("100")){
-                        EntityDq entityDq = null;
-                        JSONArray dqArr = dqJson.getJSONArray("result");
-                        for(int i = 0;i<dqArr.length();i++){
-                            entityDq = new EntityDq();
-                            dqJson = dqArr.getJSONObject(i);
-                            entityDq.setID(dqJson.getString("ID"));
-                            entityDq.setName(dqJson.getString("Name"));
-                            entityDq.setAddTime(dqJson.getString("AddTime"));
-                            DBManager.getInstance(context,EntityDq.class).insert(entityDq);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
                     }
-                    loadDqErr = false;
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }else{
-                loadDqErr = true;
-            }
 
-            numDQ++;
-            tryStartActivity();
-
-        }
-    }
-
-    class GetYYsTask extends AsyncTask<Void,Void,String>{
-
-        @Override
-        protected String doInBackground(Void... params) {
-            return HttpGetUtil.getGetJsonResult(Contant.URL_YY);
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            if(s!=null){
-                try {
-                    JSONObject dqJson = new JSONObject(s);
-                    if(dqJson.optString("Status").equals("100")){
-                        EntityYy entityYy = null;
-                        JSONArray dqArr = dqJson.getJSONArray("result");
-                        for(int i = 0;i<dqArr.length();i++){
-                            entityYy = new EntityYy();
-                            dqJson = dqArr.getJSONObject(i);
-                            entityYy.setID(dqJson.getString("ID"));
-                            entityYy.setName(dqJson.getString("Name"));
-                            entityYy.setAddTime(dqJson.getString("AddTime"));
-                            DBManager.getInstance(context,EntityYy.class).insert(entityYy);
+                String Yiyuans = null;
+                for(int j = 0 ;j<3;j++){
+                    Yiyuans = HttpGetUtil.getGetJsonResult(Contant.URL_YY);
+                    if(Yiyuans!=null){
+                        try {
+                            JSONObject YyJson = new JSONObject(Yiyuans);
+                            if(YyJson.optString("Status").equals("100")){
+                                JSONArray dqArr = YyJson.getJSONArray("result");
+                                for(int yy = 0;yy<dqArr.length();yy++){
+                                    YyJson = dqArr.getJSONObject(yy);
+                                    insert(EDatabase.TABLE_YY_NAME, YyJson);
+                                }
+                                loadYySuc = true;
+                                break;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
                     }
-                    loadYyErr = false;
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }else{
-                loadYyErr = true;
-            }
 
-            numYY++;
-            tryStartActivity();
-        }
-    }
+                String Keshis = null;
+                for(int k = 0 ;k<3;k++){
+                    Keshis = HttpGetUtil.getGetJsonResult(Contant.URL_KS);
+                    if(Keshis!=null){
+                        try {
+                            JSONObject ksJson = new JSONObject(Keshis);
+                            if(ksJson.optString("Status").equals("100")){
+                                JSONArray dqArr = ksJson.getJSONArray("result");
+                                for(int ks = 0;ks<dqArr.length();ks++){
+                                    ksJson = dqArr.getJSONObject(ks);
+                                    insert(EDatabase.TABLE_KS_NAME, ksJson);
+                                }
+                                loadKsSuc = true;
+                                break;
+                            }
 
-    class GetKSsTask extends AsyncTask<Void,Void,String>{
-
-        @Override
-        protected String doInBackground(Void... params) {
-            return HttpGetUtil.getGetJsonResult(Contant.URL_KS);
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            if(s!=null){
-                try {
-                    JSONObject dqJson = new JSONObject(s);
-                    if(dqJson.optString("Status").equals("100")){
-                        EntityKs entityKs = null;
-                        JSONArray dqArr = dqJson.getJSONArray("result");
-                        for(int i = 0;i<dqArr.length();i++){
-                            entityKs = new EntityKs();
-                            dqJson = dqArr.getJSONObject(i);
-                            entityKs.setID(dqJson.getString("ID"));
-                            entityKs.setName(dqJson.getString("Name"));
-                            entityKs.setAddTime(dqJson.getString("AddTime"));
-                            DBManager.getInstance(context,EntityKs.class).insert(entityKs);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
                     }
-                    loadKsErr = false;
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }else{
-                loadKsErr = true;
-            }
 
-            numKS++;
-            tryStartActivity();
-        }
-    }
+                String Mingyis = null;
+                for(int l = 0 ;l<3;l++){
+                    Mingyis = HttpGetUtil.getGetJsonResult(Contant.URL_MY);
+                    if(Mingyis!=null){
+                        try {
+                            JSONObject myJson = new JSONObject(Mingyis);
+                            if(myJson.optString("Status").equals("100")){
+                                JSONArray dqArr = myJson.getJSONArray("result");
+                                for(int dq = 0;dq<dqArr.length();dq++){
+                                    myJson = dqArr.getJSONObject(dq);
+                                    insert(EDatabase.TABLE_MY_NAME, myJson);
+                                }
+                                loadMySuc = true;
+                                break;
+                            }
 
-    class GetMYsTask extends AsyncTask<Void,Void,String>{
-
-        @Override
-        protected String doInBackground(Void... params) {
-            return HttpGetUtil.getGetJsonResult(Contant.URL_MY);
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-
-            if(s!=null){
-                try {
-                    JSONObject dqJson = new JSONObject(s);
-                    if(dqJson.optString("Status").equals("100")){
-                        EntityMy entityMy = null;
-                        JSONArray dqArr = dqJson.getJSONArray("result");
-                        for(int i = 0;i<dqArr.length();i++){
-                            entityMy = new EntityMy();
-                            dqJson = dqArr.getJSONObject(i);
-                            entityMy.setID(dqJson.getString("ID"));
-                            entityMy.setName(dqJson.getString("Name"));
-                            entityMy.setAddTime(dqJson.getString("AddTime"));
-                            DBManager.getInstance(context,EntityMy.class).insert(entityMy);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-
                     }
-                    loadMyErr = false;
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }else{
-                loadMyErr = true;
-            }
 
-            numMY++;
-            tryStartActivity();
-        }
+                long costTime = System.currentTimeMillis() - start;
+                //等待sleeptime时长
+                if (sleepTime - costTime > 0) {
+                    try {
+                        Thread.sleep(sleepTime - costTime);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    //进入主页面
+                    startActivity(new Intent(LogoActivity.this, MainActivity.class));
+                    finish();
+                } else {
+                    try {
+                        Thread.sleep(sleepTime);
+                    } catch (InterruptedException e) {
+                    }
+                    startActivity(new Intent(LogoActivity.this, MainActivity.class));
+                    finish();
+                }
+            }
+        }).start();
     }
 
-    public void tryStartActivity(){
-
-        if((loadDqErr && numDQ < 3) || (loadYyErr && numYY < 3) || (loadKsErr && numKS < 3) || (loadMyErr && numMY < 3)){
-            if(loadDqErr && numDQ < 3){
-                new GetDQsTask().execute();
-            } else if(loadYyErr && numYY < 3){
-                new GetYYsTask().execute();
-            } else if(loadKsErr && numKS < 3){
-                new GetKSsTask().execute();
-            } else if(loadMyErr && numMY < 3){
-                new GetMYsTask().execute();
-            }else{
-                ToastUtil.showToast(context,"缓存数据失败");
-            }
-
-        }else{
-            long costTime = System.currentTimeMillis() - start;
-            //等待sleeptime时长
-            if (sleepTime - costTime > 0) {
-                try {
-                    Thread.sleep(sleepTime - costTime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                //进入主页面
-                startActivity(new Intent(LogoActivity.this, MainActivity.class));
-                finish();
-                AnimAdapterUtil.anim_translate_next(context);
-            } else {
-                try {
-                    Thread.sleep(sleepTime);
-                } catch (InterruptedException e) {
-                }
-                startActivity(new Intent(LogoActivity.this, MainActivity.class));
-                finish();
-                AnimAdapterUtil.anim_translate_next(context);
-            }
-        }
+    public void insert(String tableName,JSONObject jsonObject){
+        MapDataHelper.getInstance(context).insertToTabtable(tableName,jsonObject.optString("ID"),jsonObject.optString("Name"),jsonObject.optString("AddTime"));
     }
 }

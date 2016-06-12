@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="#ffffff"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:layout_alignParentTop="true"
+            android:background="@color/common_top_bar_blue" >
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/titlemsg"
+                android:textColor="@color/title_text_color"
+                android:textSize="@dimen/title_size"/>
+    </RelativeLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+        <TextView
+                android:id="@+id/zjmz"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/doctor_detail_margin_top"
+                android:layout_height="wrap_content"
+                android:text="专家门诊"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                />
+        <TextView
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#666666"/>
+
+        <TextView
+                android:id="@+id/mzjs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="周五 上午 东院 心内科专家门诊"
+                android:textSize="16sp"
+                android:textColor="#dd000000"
+                android:minLines="3"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/doctor_detail_margin_top"
+                android:text="擅长"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:id="@+id/sc_title"
+                />
+
+        <TextView
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#666666"/>
+
+        <TextView
+                android:id="@+id/sc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="周五 上午 东院 心内科专家门诊"
+                android:textSize="16sp"
+                android:textColor="#dd000000"
+                android:minLines="5"/>
+
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/doctor_detail_margin_top"
+                android:text="简介"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:id="@+id/jj_title"
+        />
+
+        <TextView
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#666666"/>
+
+        <TextView
+                android:id="@+id/jj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:textSize="16sp"
+                android:textColor="#dd000000"
+                android:text="asdasdasfdfsdf"
+                />
+
+
+    </LinearLayout>
+
+</LinearLayout>

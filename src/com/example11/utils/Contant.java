@@ -11,6 +11,8 @@ public class Contant {
     public static final int FLAG_REGISTER = 0;
     public static final int FLAG_FORGET = 1;
 
+    public static final String URL_ACTION = "http://123.206.62.86:8088/ArticleList.aspx?ID=426";
+
     //获取验证码
     public static final String ACTION_IDENTIFY = "SENDERIFYCODE";
     public static final String URL_SEND_IFYCODE = URL_HOST + "send_verifycode";
@@ -24,6 +26,10 @@ public class Contant {
 
     //更新用户信息
     public static final String URL_UPDATE_INFO = URL_HOST + "upd_userinfo";
+
+
+    //医生列表加载
+    public static final String URL_DOCTOR = URL_HOST + "get_doctor";
 
     //商品列表加载
     public static final String URL_GOODS = URL_HOST + "get_goods";
