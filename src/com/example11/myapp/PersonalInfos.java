@@ -52,7 +52,7 @@ public class PersonalInfos extends Activity implements View.OnClickListener {
 
     DialogWaiting dialogWating;
 
-
+    Button go_back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +62,14 @@ public class PersonalInfos extends Activity implements View.OnClickListener {
     }
 
     public void initView() {
+
+        go_back = (Button) findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         save = (Button) findViewById(R.id.save);
         save.setOnClickListener(this);

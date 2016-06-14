@@ -19,6 +19,15 @@
                 android:text="验证短信"
                 android:textColor="@color/title_text_color"
                 android:textSize="@dimen/title_size" />
+
+        <Button
+                android:id="@+id/go_back"
+                android:layout_width="@dimen/go_back_w"
+                android:layout_height="@dimen/go_back_h"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/go_back_bg"
+                android:layout_marginLeft="@dimen/go_back_margin_left"/>
     </RelativeLayout>
 
     <TextView
@@ -46,7 +55,7 @@
                 android:background="@drawable/login_edite_style"
                 android:hint="输入验证码"
                 android:textColorHint="#666666"
-                android:maxLength="11"
+                android:maxLength="6"
                 android:paddingLeft="70dp">
         </EditText>
 

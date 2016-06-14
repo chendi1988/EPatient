@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:background="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_top_bar"
+            android:layout_alignParentTop="true"
+            android:background="@color/common_top_bar_blue">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="修改密码"
+                android:textColor="#ffffff"
+                android:textSize="18sp"/>
+
+        <Button
+                android:id="@+id/go_back"
+                android:layout_width="@dimen/go_back_w"
+                android:layout_height="@dimen/go_back_h"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/go_back_bg"
+                android:layout_marginLeft="@dimen/go_back_margin_left"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+            android:layout_below="@id/title"
+            android:id="@+id/login_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center">
+
+        <FrameLayout
+                android:id="@+id/old_pwd_div"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#ffffff"
+                android:gravity="center">
+
+            <EditText
+                    android:id="@+id/old_pwd"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/default_edittext_height"
+                    android:inputType="textPassword"
+                    android:paddingRight="60dp"
+                    android:background="@drawable/login_edite_style"
+                    android:hint="输入旧密码"
+                    android:textSize="14sp"
+                    android:textColorHint="#666666"
+                    android:maxLength="11"
+                    android:paddingLeft="60dp">
+            </EditText>
+
+            <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="旧密码"
+                    android:textSize="14sp"/>
+            <Button
+                    android:id="@+id/pwd_old_eye"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:background="@drawable/agt"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:visibility="invisible"
+            />
+        </FrameLayout>
+
+        <FrameLayout
+                android:id="@+id/new_pwd_div"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/old_pwd_div"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+            <EditText
+                    android:id="@+id/new_pwd"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/default_edittext_height"
+                    android:inputType="textPassword"
+                    android:paddingRight="60dp"
+                    android:background="@drawable/login_edite_style"
+                    android:hint="输入新密码"
+                    android:textColorHint="#666666"
+                    android:textSize="14sp"
+                    android:maxLength="11"
+                    android:paddingLeft="60dp">
+            </EditText>
+
+            <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="left|center_vertical"
+                    android:gravity="center"
+                    android:text="新密码"
+                    android:textSize="14sp"/>
+            <Button
+                    android:id="@+id/pwd_new_eye"
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:background="@drawable/agt"
+                    android:layout_gravity="right|center_vertical"
+                    android:layout_marginRight="10dp"
+                    android:visibility="invisible"
+            />
+        </FrameLayout>
+
+        <Button
+                android:id="@+id/submit"
+                android:layout_width="fill_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/new_pwd_div"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/btn_register_bg"
+                android:textColor="@android:color/white"
+                android:gravity="center"
+                android:enabled="false"
+                android:textSize="18sp"
+                android:text="提交"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

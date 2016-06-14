@@ -10,7 +10,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_top_bar"
             android:layout_alignParentTop="true"
-            android:background="@color/common_top_bar_blue" >
+            android:background="@color/common_top_bar_blue">
 
         <TextView
                 android:layout_width="wrap_content"
@@ -20,14 +20,22 @@
                 android:id="@+id/titlemsg"
                 android:textColor="@color/title_text_color"
                 android:textSize="@dimen/title_size"/>
+
+        <Button
+                android:id="@+id/go_back"
+                android:layout_width="@dimen/go_back_w"
+                android:layout_height="@dimen/go_back_h"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/go_back_bg"
+                android:layout_marginLeft="@dimen/go_back_margin_left"/>
     </RelativeLayout>
 
     <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp">
+           >
         <TextView
                 android:id="@+id/zjmz"
                 android:layout_width="match_parent"
@@ -35,23 +43,35 @@
                 android:layout_height="wrap_content"
                 android:text="专家门诊"
                 android:textColor="#000000"
-                android:textSize="18sp"
-                />
+                android:textSize="16sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+        />
         <TextView
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="#666666"/>
 
         <TextView
                 android:id="@+id/mzjs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="10dp"
                 android:text="周五 上午 东院 心内科专家门诊"
-                android:textSize="16sp"
-                android:textColor="#dd000000"
-                android:minLines="3"/>
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+        />
+
+        <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#50666666"/>
 
         <TextView
                 android:layout_width="match_parent"
@@ -59,25 +79,37 @@
                 android:layout_marginTop="@dimen/doctor_detail_margin_top"
                 android:text="擅长"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:id="@+id/sc_title"
-                />
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+        />
 
         <TextView
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="#666666"/>
 
         <TextView
                 android:id="@+id/sc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="10dp"
                 android:text="周五 上午 东院 心内科专家门诊"
-                android:textSize="16sp"
-                android:textColor="#dd000000"
-                android:minLines="5"/>
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+        />
+
+        <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#50666666"/>
 
         <TextView
                 android:layout_width="match_parent"
@@ -85,25 +117,31 @@
                 android:layout_marginTop="@dimen/doctor_detail_margin_top"
                 android:text="简介"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:id="@+id/jj_title"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
         />
 
         <TextView
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:background="#666666"/>
 
         <TextView
                 android:id="@+id/jj"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:textSize="16sp"
-                android:textColor="#dd000000"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:text="asdasdasfdfsdf"
-                />
+        />
 
 
     </LinearLayout>

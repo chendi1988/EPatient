@@ -6,6 +6,7 @@ package com.example11.utils;
 public class Contant {
 
     public static final String COMPANYID = "426";
+    public static final String HOST = "http://123.206.62.86:8088/";
     public static final String URL_HOST = "http://123.206.62.86:8088/api.asmx/";
 
     public static final int FLAG_REGISTER = 0;
@@ -23,6 +24,10 @@ public class Contant {
 
     //登录
     public static final String URL_LOGIN = URL_HOST + "do_login";
+
+    //修改或找回密码
+    public static final String URL_UPDATE_PWD = URL_HOST + "upd_password";
+
 
     //更新用户信息
     public static final String URL_UPDATE_INFO = URL_HOST + "upd_userinfo";

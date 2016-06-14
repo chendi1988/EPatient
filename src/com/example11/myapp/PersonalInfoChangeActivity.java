@@ -30,6 +30,7 @@ public class PersonalInfoChangeActivity extends Activity {
     Button save;
 
     Context context;
+    Button go_back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,14 @@ public class PersonalInfoChangeActivity extends Activity {
     }
 
     public void initView() {
+
+        go_back = (Button) findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         titlemsg = (TextView) findViewById(R.id.titlemsg);
         item = (EditText) findViewById(R.id.item);

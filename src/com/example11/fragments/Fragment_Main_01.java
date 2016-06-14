@@ -284,6 +284,28 @@ public class Fragment_Main_01 extends Fragment {
             }
         });
 
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                switch (scrollState) {
+                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE://空闲状态
+                        mAdapter.onSetScrollState(false);
+                        break;
+                    case AbsListView.OnScrollListener.SCROLL_STATE_FLING://滚动状态
+                        mAdapter.onSetScrollState(true);
+                        break;
+                    case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL://触摸后滚动
+
+                        break;
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+
+            }
+        });
+
         //init dropdownview
         mDropDownMenu.setDropDownMenu(Arrays.asList(headers), popupViews, mListView);
         mDropDownMenu.setBackgroundColor(Color.WHITE);

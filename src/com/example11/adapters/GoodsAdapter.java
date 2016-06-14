@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example11.myapp.R;
+import com.example11.utils.Contant;
 import net.tsz.afinal.FinalBitmap;
 
 import java.util.List;
@@ -78,8 +79,8 @@ public class GoodsAdapter extends BaseAdapter {
             VH = (ViewHold_02) convertView.getTag();
         }
 
-        if(onScroll){
-            fb.display(VH.img_header,Alist.get(position).get("photo").toString());
+        if(!onScroll){
+            fb.display(VH.img_header, Contant.HOST + Alist.get(position).get("photo").toString());
         }
         VH.name.setText( Alist.get(position).get("name").toString());
         VH.money.setText("￥" + Alist.get(position).get("money").toString() + "元");

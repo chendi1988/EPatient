@@ -78,8 +78,8 @@ public class DoctorsAdapter extends BaseAdapter {
             VH = (ViewHold_02) convertView.getTag();
         }
 
-        if(onScroll){
-            fb.display(VH.img_header,Alist.get(position).get("photo").toString());
+        if(!onScroll){
+//            fb.display(VH.img_header, Contant.HOST + Alist.get(position).get("photo").toString());
         }
 
         VH.name.setText( Alist.get(position).get("xm").toString());

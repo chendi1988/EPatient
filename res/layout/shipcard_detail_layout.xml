@@ -23,6 +23,15 @@
                 android:textSize="@dimen/title_size" />
 
         <Button
+                android:id="@+id/go_back"
+                android:layout_width="@dimen/go_back_w"
+                android:layout_height="@dimen/go_back_h"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/go_back_bg"
+                android:layout_marginLeft="@dimen/go_back_margin_left"/>
+
+        <Button
                 android:id="@+id/pay"
                 android:layout_width="wrap_content"
                 android:text="立即购买"
@@ -57,6 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
+                android:textColor="@color/color_money"
                 android:text="￥1000元"
                 />
 

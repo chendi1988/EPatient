@@ -22,10 +22,19 @@
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
+        <Button
+                android:id="@+id/go_back"
+                android:layout_width="@dimen/go_back_w"
+                android:layout_height="@dimen/go_back_h"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/go_back_bg"
+                android:layout_marginLeft="@dimen/go_back_margin_left"/>
+
     </RelativeLayout>
 
     <RelativeLayout
-            android:id="@+id/re_changepwd"
+            android:id="@+id/changepwd"
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
@@ -55,8 +64,8 @@
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
             android:clickable="true"
-            android:paddingLeft="12dp" >
-
+            android:paddingLeft="12dp"
+            android:visibility="gone">
 
         <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +89,8 @@
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
             android:clickable="true"
-            android:paddingLeft="12dp" >
+            android:paddingLeft="12dp"
+            android:visibility="gone">
 
         <TextView
                 android:layout_width="wrap_content"
@@ -100,7 +110,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-            android:id="@+id/re_aboutus"
+            android:id="@+id/aboutus"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"

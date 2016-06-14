@@ -9,6 +9,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.example11.adapters.AnimAdapterUtil;
@@ -30,6 +31,9 @@ public class WebViewActivity extends Activity{
 
     TextView titlemsg;
 
+    Button go_back;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,15 @@ public class WebViewActivity extends Activity{
     }
 
     public void initView(){
+
+        go_back = (Button) findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         pb = (ProgressBar) findViewById(R.id.progress);
         webView = (WebView) findViewById(R.id.web);
 

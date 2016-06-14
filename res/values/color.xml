@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="common_top_bar_blue">#22292c</color>
+    <color name="common_top_bar_blue">#0066ff</color>
 
     <color name="activity_bg_color">#ffffff</color>
 
@@ -20,4 +20,12 @@
 
     <!--透明色-->
     <color name="touming">#00000000</color>
+
+
+    <color name="list_item_title_color">#000000</color>
+    <color name="list_item_msg_color">#666666</color>
+
+    <color name="list_item_color">#353535</color>
+
+    <color name="color_money">#b02505</color>
 </resources>

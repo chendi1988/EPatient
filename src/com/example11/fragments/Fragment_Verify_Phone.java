@@ -32,10 +32,20 @@ public class Fragment_Verify_Phone extends Fragment {
     Button rg_phone_clear;
     Button next;
 
+    Button go_back;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_verify_phone, null);
+
+        go_back = (Button) view.findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         rg_phone = (EditText) view.findViewById(R.id.rg_phone);
         rg_phone.addTextChangedListener(new EditChangedListener());

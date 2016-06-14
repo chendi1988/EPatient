@@ -21,10 +21,18 @@
 
     <dimen name="lable_edite_size">16sp</dimen>
 
+    <dimen name="list_item_title_size">14sp</dimen>
+    <dimen name="list_item_msg_size">12sp</dimen>
 
+    <dimen name="list_item_size">14sp</dimen>
 
     <dimen name="default_edittext_height">50dp</dimen>
 
     <dimen name="doctor_detail_margin_top">10dp</dimen>
 
+
+    <!--左上角返回按钮-->
+    <dimen name="go_back_w">20dp</dimen>
+    <dimen name="go_back_h">20dp</dimen>
+    <dimen name="go_back_margin_left">15dp</dimen>
 </resources>

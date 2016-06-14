@@ -54,6 +54,8 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
     public int typeRegister = 0;
     public int typeForget = 1;
 
+    Button go_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,14 @@ public class LoginActivity extends Activity  implements LinearLayoutView.KeyBord
     }
 
     public void initView() {
+
+        go_back = (Button) findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         resizeLayout = (LinearLayoutView) findViewById(R.id.login_root_layout);
         logoLayout = (LinearLayout) findViewById(R.id.login_layout_logo);

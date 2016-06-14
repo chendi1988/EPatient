@@ -46,15 +46,16 @@ public class Fragment_Verify_pwd extends Fragment {
 
     int type = 0;
 
-    public interface GetType{
+    Button go_back;
+
+    public interface GetType {
         public int getType();
     }
 
     GetType getType;
 
     @Override
-    public void onAttach(Activity activity)
-    {
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         getType = (GetType) activity;
     }
@@ -63,6 +64,14 @@ public class Fragment_Verify_pwd extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         vBundle = getArguments();
         View view = inflater.inflate(R.layout.fragment_verify_pwd, null);
+
+        go_back = (Button) view.findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         pwd = (EditText) view.findViewById(R.id.pwd);
         pwd_eye = (Button) view.findViewById(R.id.pwd_eye);
@@ -82,12 +91,12 @@ public class Fragment_Verify_pwd extends Fragment {
 
             case 1:
 
-                url = Contant.URL_REGISTER;
+                url = Contant.URL_UPDATE_PWD;
                 title = (TextView) view.findViewById(R.id.title_msg);
                 title.setText("重置密码");
                 pwd.setHint("输入长度6~10位新密码");
                 register.setText("提交");
-                type = 1;
+                type = 2;
 
                 break;
 
@@ -131,12 +140,6 @@ public class Fragment_Verify_pwd extends Fragment {
                     String pwdStr = pwd.getText().toString().trim();
                     if (pwdStr.length() > 5) {
                         new RegisterTask(pwdStr).execute();
-
-//                        Intent intent = new Intent();
-//                        intent.putExtra("phone",vBundle.getString("phone"));
-//                        intent.putExtra("pwd",pwdStr);
-//                        getActivity().setResult(1,intent);
-//                        getActivity().finish();
                     } else {
                         ToastUtil.showToast(getActivity(), "输入长度6~10位密码");
                     }
@@ -161,6 +164,10 @@ public class Fragment_Verify_pwd extends Fragment {
             map.put("phone", vBundle.getString("phone"));
             map.put("password", pwd);
             map.put("verifycode", vBundle.getString("verify"));
+
+            if (type == 2) {
+                map.put("type", type + "");
+            }
         }
 
         @Override
@@ -183,8 +190,8 @@ public class Fragment_Verify_pwd extends Fragment {
                     if (jsonObject.optString("Status").equals("100")) {
 
                         Intent intent = new Intent();
-                        intent.putExtra("phone",map.get("phone"));
-                        intent.putExtra("password",map.get("password"));
+                        intent.putExtra("phone", map.get("phone"));
+                        intent.putExtra("password", map.get("password"));
                         getActivity().setResult(1);
                         getActivity().finish();
                     }

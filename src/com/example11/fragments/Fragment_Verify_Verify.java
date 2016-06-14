@@ -1,5 +1,6 @@
 package com.example11.fragments;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.example11.myapp.ChangePwdFragmet;
 import com.example11.myapp.R;
 import com.example11.utils.Contant;
 import com.example11.utils.HttpPostUtil;
@@ -63,7 +65,17 @@ public class Fragment_Verify_Verify extends Fragment {
 
     Bundle bundle;
 
+    Button go_back;
+
     boolean isFirst = true;
+
+    VerifyGetType getType;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        getType = (VerifyGetType) activity;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +86,15 @@ public class Fragment_Verify_Verify extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_verify_verify, null);
+
+        go_back = (Button) view.findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
         bundle = getArguments();
         phoneNoti = (TextView) view.findViewById(R.id.phone_noti);
         phoneNoti.setText("我们已为你的手机 " + bundle.getString("phone") + " 发送了验证短信");
@@ -85,8 +106,8 @@ public class Fragment_Verify_Verify extends Fragment {
         next = (Button) view.findViewById(R.id.next);
         next.setOnClickListener(onClick);
 
-        if(isFirst){
-            isFirst =!isFirst;
+        if (isFirst) {
+            isFirst = !isFirst;
             startTimer();
         }
 
@@ -106,15 +127,22 @@ public class Fragment_Verify_Verify extends Fragment {
 
 //                    Bundle vBundle = new Bundle();
 //                    bundle.putString("phone",bundle.getString("phone"));
-                    bundle.putString("verify",verify.getText().toString().trim());
+                    bundle.putString("verify", verify.getText().toString().trim());
 
                     Fragment_Verify_pwd fragmentVerifyPwd = new Fragment_Verify_pwd();
-                    fragmentVerifyPwd.setArguments(bundle);
+                    ChangePwdFragmet changePwdFragmet = new ChangePwdFragmet();
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     FragmentTransaction ft = fm.beginTransaction();
 
-                    ft.replace(R.id.register, fragmentVerifyPwd);
+                    if (getType.getVType() == 2) {
+                        changePwdFragmet.setArguments(bundle);
+                        ft.replace(R.id.register, changePwdFragmet);
+                    } else {
+                        fragmentVerifyPwd.setArguments(bundle);
+                        ft.replace(R.id.register, fragmentVerifyPwd);
+                    }
+
                     ft.addToBackStack(null);
                     ft.commit();
 
@@ -236,6 +264,10 @@ public class Fragment_Verify_Verify extends Fragment {
             }
 
         }
+    }
+
+    public interface VerifyGetType {
+        public int getVType();
     }
 
 }

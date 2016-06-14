@@ -28,6 +28,8 @@ public class ShipCardDetailActivity extends Activity {
 
     String money = "";
 
+    Button go_back;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +41,14 @@ public class ShipCardDetailActivity extends Activity {
     }
 
     public void initView() {
+
+        go_back = (Button) findViewById(R.id.go_back);
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         pay = (Button) findViewById(R.id.pay);
         pay.setOnClickListener(new View.OnClickListener() {

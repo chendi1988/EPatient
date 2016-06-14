@@ -5,9 +5,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import com.example11.adapters.AnimAdapterUtil;
+import com.example11.fragments.Fragment_Verify_Verify;
 import com.example11.fragments.Fragment_Verify_pwd;
 
-public class RegisteActivity extends FragmentActivity implements Fragment_Verify_pwd.GetType{
+public class RegisteActivity extends FragmentActivity implements Fragment_Verify_pwd.GetType ,Fragment_Verify_Verify.VerifyGetType {
 
     Context context;
 
@@ -36,6 +37,11 @@ public class RegisteActivity extends FragmentActivity implements Fragment_Verify
 
     @Override
     public int getType() {
+        return getIntent().getIntExtra("type",0);
+    }
+
+    @Override
+    public int getVType() {
         return getIntent().getIntExtra("type",0);
     }
 }
