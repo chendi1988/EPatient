@@ -9,6 +9,6 @@
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:name="com.example11.fragments.Fragment_Verify_Phone"/>
+            android:name="com.test.fragments.Fragment_Verify_Phone"/>
 
 </RelativeLayout>

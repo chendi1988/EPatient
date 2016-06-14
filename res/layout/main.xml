@@ -7,7 +7,7 @@
             android:id="@+id/webfragment"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:name="com.example11.fragments.WebViewFragment"
+            android:name="com.test.fragments.WebViewFragment"
             />
 </LinearLayout>
 

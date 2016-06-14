@@ -5,25 +5,15 @@
               android:background="#ffffff"
               android:orientation="vertical"
 >
-    <com.example11.view.DropDownMenu
+    <com.test.view.DropDownMenu
             android:id="@+id/dropDownMenu"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
             android:background="#ffffff"
-            app:ddmenuTextSize="13sp"
-            app:ddtextUnselectedColor="@color/drop_down_unselected"
-            app:ddtextSelectedColor="@color/drop_down_selected"
-            app:dddividerColor="@color/gray"
-            app:ddunderlineColor="@color/gray"
-            app:ddmenuSelectedIcon="@mipmap/drop_down_selected_icon"
-            app:ddmaskColor="@color/mask_color"
-            app:ddmenuBackgroundColor="@color/white"
-            app:ddmenuUnselectedIcon="@mipmap/drop_down_unselected_icon"
+            android:layout_height="40dp"/>
     />
 
-    <com.example11.view.XListView
+    <com.test.view.XListView
             android:id="@+id/xListView"
             android:layout_width="match_parent"
             android:cacheColorHint="#00000000"
