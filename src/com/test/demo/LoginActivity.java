@@ -1,11 +1,13 @@
 package com.test.demo;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.*;
+import android.text.Editable;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.test.adapters.AnimAdapterUtil;
+import com.test.baseactivity.BaseActivity;
 import com.test.utils.*;
 import com.test.view.DialogWaiting;
 import com.test.view.LinearLayoutView;
@@ -30,7 +33,7 @@ import static com.test.utils.Contant.URL_LOGIN;
 /**
  * Created by chendi on 2016/5/29.
  */
-public class LoginActivity extends Activity  implements LinearLayoutView.KeyBordStateListener {
+public class LoginActivity extends BaseActivity implements LinearLayoutView.KeyBordStateListener {
 
     EditText et_username;
     Button bt_username_clear;

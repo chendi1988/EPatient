@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:gravity="center_vertical">
+
+    <ImageView
+            android:id="@+id/img_header"
+            android:layout_width="80dp"
+            android:layout_height="70dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="15dp"
+            android:background="@drawable/ic_launcher"/>
+    <RelativeLayout
+            android:layout_toRightOf="@id/img_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp">
+
+        <LinearLayout
+                android:id="@+id/name_div"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+            <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_title_color"
+                    android:gravity="top|left"
+                    android:textSize="@dimen/list_item_title_size"
+                    android:ellipsize="end"
+                    android:maxEms="8"
+                    android:text="何医生"
+            />
+
+            <TextView
+                    android:id="@+id/ks_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/list_item_title_color"
+                    android:gravity="top|left"
+                    android:textSize="@dimen/list_item_title_size"
+                    android:ellipsize="end"
+                    android:maxEms="10"
+                    android:text="(心内科)"
+            />
+        </LinearLayout>
+
+
+        <TextView
+                android:id="@+id/descption"
+                android:layout_below="@id/name_div"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/list_item_msg_color"
+                android:textSize="@dimen/list_item_msg_size"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:layout_marginTop="7dp"
+                android:text="主任医师"
+        />
+
+        <TextView
+                android:id="@+id/yy_name"
+                android:layout_below="@id/descption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/list_item_msg_color"
+                android:textSize="@dimen/list_item_msg_size"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:layout_marginTop="5dp"
+                android:text="西安高新医院"
+        />
+    </RelativeLayout>
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="#bababa"/>
+
+
+</RelativeLayout>

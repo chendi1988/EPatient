@@ -2,6 +2,7 @@
   <library name="android-support-v4">
     <CLASSES>
       <root url="jar://H:/AndroidJARs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jpush-android-2.1.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

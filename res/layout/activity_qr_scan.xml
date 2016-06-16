@@ -39,12 +39,12 @@
         android:layout_height="match_parent" />
 
     <ImageView
-        android:id="@+id/top_mask"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/scan_mask"
-        android:contentDescription="@string/app_name" />
+            android:id="@+id/top_mask"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/scan_mask"
+            android:contentDescription="@string/app_name"
+            android:layout_below="@+id/title"/>
 
     <RelativeLayout
         android:id="@+id/capture_crop_layout"

@@ -8,7 +8,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -18,12 +17,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.test.adapters.AnimAdapterUtil;
-import com.test.fragments.*;
+import com.test.baseactivity.BaseActivity;
+import com.test.fragments.Fragment01;
+import com.test.fragments.Fragment_Main_02;
+import com.test.fragments.Fragment_Main_03;
+import com.test.fragments.Fragment_Main_04;
 import com.test.utils.CheckFormatUtil;
 import com.test.utils.Contant;
 import com.test.utils.Util_SharedPreferences;
 
-public class MainActivity extends FragmentActivity implements Fragment_Main_03.InitTab {
+public class MainActivity extends BaseActivity implements Fragment_Main_03.InitTab {
     // 未读消息textview
     private TextView unreadLabel;
     // 未读通讯录textview
@@ -31,7 +34,10 @@ public class MainActivity extends FragmentActivity implements Fragment_Main_03.I
     protected static final String TAG = "MainActivity";
 
     private Fragment[] fragments;
-    public Fragment_Main_01 homefragment;
+
+    public Fragment01 fragment01;
+
+//    public Fragment_Main_01 homefragment;
     private Fragment_Main_02 contactlistfragment;
     private Fragment_Main_03 findfragment;
     private Fragment_Main_04 profilefragment;
@@ -75,11 +81,14 @@ public class MainActivity extends FragmentActivity implements Fragment_Main_03.I
         unreadLabel = (TextView) findViewById(R.id.unread_msg_number);
         unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
 
-        homefragment = new Fragment_Main_01();
+//        homefragment = new Fragment_Main_01();
         contactlistfragment = new Fragment_Main_02();
         findfragment = new Fragment_Main_03();
         profilefragment = new Fragment_Main_04();
-        fragments = new Fragment[]{homefragment, contactlistfragment,
+
+        fragment01 = new Fragment01();
+
+        fragments = new Fragment[]{fragment01, contactlistfragment,
                 findfragment, profilefragment};
 
         imagebuttons = new ImageView[4];
@@ -97,12 +106,12 @@ public class MainActivity extends FragmentActivity implements Fragment_Main_03.I
         textviews[0].setTextColor(0xFF45C01A);
         // 添加显示第一个fragment
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container, homefragment)
+                .add(R.id.fragment_container, fragment01)
                 .add(R.id.fragment_container, contactlistfragment)
                 .add(R.id.fragment_container, profilefragment)
                 .add(R.id.fragment_container, findfragment)
                 .hide(contactlistfragment).hide(profilefragment)
-                .hide(findfragment).show(homefragment).commit();
+                .hide(findfragment).show(fragment01).commit();
 
     }
 

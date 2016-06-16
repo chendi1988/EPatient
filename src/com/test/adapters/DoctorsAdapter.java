@@ -33,13 +33,12 @@ public class DoctorsAdapter extends BaseAdapter {
     }
 
     public DoctorsAdapter(Context context,
-                                    List<Map<String, Object>> list,FinalBitmap fb) {
+                          List<Map<String, Object>> list, FinalBitmap fb) {
         Acontext = context;
         this.fb = fb;
         Alist = list;
         layoutInflater = LayoutInflater.from(context);
     }
-
 
 
     @Override
@@ -64,13 +63,17 @@ public class DoctorsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
 
-            convertView = layoutInflater.inflate(R.layout.list_item, null);
+            convertView = layoutInflater.inflate(R.layout.list_doctor_item, null);
 
             VH = new ViewHold_02();
             VH.img_header = (ImageView) convertView.findViewById(R.id.img_header);
 
             VH.name = (TextView) convertView.findViewById(R.id.name);
+            VH.ks_name = (TextView) convertView.findViewById(R.id.ks_name);
+
             VH.descption = (TextView) convertView.findViewById(R.id.descption);
+
+            VH.yy_name = (TextView) convertView.findViewById(R.id.yy_name);
 
             convertView.setTag(VH);
 
@@ -78,12 +81,16 @@ public class DoctorsAdapter extends BaseAdapter {
             VH = (ViewHold_02) convertView.getTag();
         }
 
-        if(!onScroll){
+        if (!onScroll) {
 //            fb.display(VH.img_header, Contant.HOST + Alist.get(position).get("photo").toString());
         }
 
-        VH.name.setText( Alist.get(position).get("xm").toString());
-        VH.descption.setText( Alist.get(position).get("jj").toString());
+        VH.name.setText(Alist.get(position).get("xm").toString());
+        VH.ks_name.setText("(" + Alist.get(position).get("ks").toString() + ")");
+
+//        VH.descption.setText( Alist.get(position).get("jj").toString());
+
+        VH.yy_name.setText(Alist.get(position).get("yy").toString());
 
         return convertView;
     }
@@ -93,7 +100,11 @@ public class DoctorsAdapter extends BaseAdapter {
         ImageView img_header;
 
         TextView name;
+        TextView ks_name;
+
         TextView descption;
+
+        TextView yy_name;
 
     }
 }
