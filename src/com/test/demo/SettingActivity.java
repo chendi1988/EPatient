@@ -82,12 +82,16 @@ public class SettingActivity extends BaseFragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
-            case 0:
+            case 1:
                 ToastUtil.showToast(context, "修改成功");
                 break;
-
-            case 1:
-                break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        AnimAdapterUtil.anim_translate_back(this);
     }
 }

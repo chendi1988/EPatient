@@ -176,10 +176,10 @@ public class Fragment01 extends Fragment {
         //init doctor list
         xList.setBackgroundColor(Color.WHITE);
         xList.setFadingEdgeLength(0);
-        xList.setCacheColorHint(Color.alpha(R.color.touming));
         xList.setScrollbarFadingEnabled(true);
         xList.setPullLoadEnable(false);
         xList.setDividerHeight(0);
+        xList.setCacheColorHint(0);
 
         mAdapter = new DoctorsAdapter(getActivity(), datas, fb);
         xList.setAdapter(mAdapter);
@@ -312,6 +312,8 @@ public class Fragment01 extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
+            System.out.println("首页列表数据：" + s);
+
             try {
                 Thread.sleep(System.currentTimeMillis() - start > 2000 ? 0 : System.currentTimeMillis() - start);
             } catch (InterruptedException e) {
@@ -350,15 +352,15 @@ public class Fragment01 extends Fragment {
                             map_item.put("dq", jsonObject.optString("dq"));
                             map_item.put("my", jsonObject.optString("my"));
                             datas.add(map_item);
+                        }
 
-                            if (jsonArray.length() < Contant.PAGESIZE && datas.size() < Contant.PAGESIZE) {
-                                xList.setPullLoadEnable(false);
-                            } else if (datas.size() >= Contant.PAGESIZE && jsonArray.length() < Contant.PAGESIZE) {
-                                tag = true;
-                            } else {
-                                tag = false;
-                                xList.setPullLoadEnable(true);
-                            }
+                        if (jsonArray.length() < Contant.PAGESIZE && datas.size() < Contant.PAGESIZE) {
+                            xList.setPullLoadEnable(false);
+                        } else if (datas.size() >= Contant.PAGESIZE && jsonArray.length() < Contant.PAGESIZE) {
+                            tag = true;
+                        } else {
+                            tag = false;
+                            xList.setPullLoadEnable(true);
                         }
                     }
 

@@ -92,7 +92,8 @@ public class DropDownMenu1 extends LinearLayout {
         //为tabMenuView添加下划线
         View underLine = new View(getContext());
         underLine.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dpTpPx(1.0f)));
-        underLine.setBackgroundColor(underlineColor);
+//        underLine.setBackgroundColor(underlineColor);
+        underLine.setBackgroundResource(R.drawable.home_menu_underline);
         addView(underLine, 1);
 
         //初始化containerView并将其添加到DropDownMenu

@@ -51,7 +51,7 @@ public class Fragment_Verify_Verify extends Fragment {
                     send_verify.setText("" + num + "s后重新发送");
                     if (num < 0) {
                         stopTimer();
-                        num = 60;
+                        num = 90;
                         send_verify.setEnabled(true);
                         send_verify.setText("发送验证码");
                     }
@@ -212,12 +212,12 @@ public class Fragment_Verify_Verify extends Fragment {
             tTask = null;
         }
 
-//        num = 60;
+//        num = 90;
 //        send_verify.setEnabled(true);
 //        send_verify.setText("发送验证码");
     }
 
-    public int num = 60;
+    public int num = 90;
 
 
     class RequestVerify extends AsyncTask<Void, Void, String> {

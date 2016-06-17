@@ -1,5 +1,6 @@
 package com.test.demo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,7 +17,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.test.adapters.AnimAdapterUtil;
-import com.test.baseactivity.BaseActivity;
 import com.test.utils.*;
 import com.test.view.DialogWaiting;
 import com.test.view.LinearLayoutView;
@@ -33,7 +33,7 @@ import static com.test.utils.Contant.URL_LOGIN;
 /**
  * Created by chendi on 2016/5/29.
  */
-public class LoginActivity extends BaseActivity implements LinearLayoutView.KeyBordStateListener {
+public class LoginActivity extends Activity implements LinearLayoutView.KeyBordStateListener {
 
     EditText et_username;
     Button bt_username_clear;
@@ -301,6 +301,8 @@ public class LoginActivity extends BaseActivity implements LinearLayoutView.KeyB
                         map.put("weight", resultStr.optString("weight"));
                         map.put("address", resultStr.optString("address"));
 
+                        map.put("logintype", "1");
+
                         Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER, map);
 
 //                        Intent intent = new Intent();
@@ -315,10 +317,16 @@ public class LoginActivity extends BaseActivity implements LinearLayoutView.KeyB
                         AnimAdapterUtil.anim_translate_back(context);
                     } else {
                         ToastUtil.showToast(context, "登录失败");
+                        map = new HashMap<String, String>();
+                        map.put("logintype", "0");
+                        Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER, map);
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    map = new HashMap<String, String>();
+                    map.put("logintype", "0");
+                    Util_SharedPreferences.getInstance().setItemsDataByMap(context, Contant.SP_USER, map);
                 }
             }
 
@@ -342,6 +350,7 @@ public class LoginActivity extends BaseActivity implements LinearLayoutView.KeyB
 
     @Override
     public void onBackPressed() {
+        setResult(0);
         super.onBackPressed();
 
         AnimAdapterUtil.anim_translate_back(context);

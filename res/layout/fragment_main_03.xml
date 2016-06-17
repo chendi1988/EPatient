@@ -3,15 +3,87 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#ebebeb"
-              android:orientation="vertical" >
+              android:orientation="vertical">
+
+    <RelativeLayout
+            android:id="@+id/personal_cen"
+            android:layout_width="fill_parent"
+            android:layout_height="130dp"
+            android:background="@color/common_top_bar_blue"
+            android:clickable="true"
+            android:paddingLeft="12dp"
+    >
+
+        <LinearLayout
+                android:id="@+id/header_layout"
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/my_faceback">
+
+            <com.test.view.RoundCornerImageView
+                    android:id="@+id/header"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/my_face_default"/>
+
+        </LinearLayout>
+
+
+        <TextView
+                android:id="@+id/load"
+                android:layout_below="@id/header_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="登录/注册"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+        />
+
+        <LinearLayout
+                android:id="@+id/msg_layout"
+                android:visibility="gone"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/header_layout"
+                android:orientation="vertical"
+                android:gravity="center"
+        >
+
+            <TextView
+                    android:id="@+id/doc_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="何医生(心内科) 主任医师"
+                    android:textSize="16sp"
+                    android:textColor="#ffffff"/>
+
+            <TextView
+                    android:id="@+id/yy"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="西安高新医院"
+                    android:textSize="14sp"
+                    android:textColor="#ffffff"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
     <RelativeLayout
             android:id="@+id/re_personal_info"
+            android:visibility="gone"
             android:layout_width="fill_parent"
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
             android:clickable="true"
-            android:paddingLeft="12dp" >
+            android:paddingLeft="12dp">
 
         <ImageView
                 android:id="@+id/iv_personal_info"
@@ -20,7 +92,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/ic_launcher"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -30,57 +102,31 @@
                 android:layout_toRightOf="@id/iv_personal_info"
                 android:text="个人信息"
                 android:textColor="#353535"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="12dp"
-                android:background="#dadada" />
+                android:background="#dadada"/>
     </RelativeLayout>
 
-    <RelativeLayout
-            android:id="@+id/re_setting"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:background="@drawable/btn_list_item_bg"
-            android:clickable="true"
-            android:paddingLeft="12dp" >
-
-        <ImageView
-                android:id="@+id/iv_setting"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_launcher" />
-
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:layout_toRightOf="@id/iv_setting"
-                android:text="设置"
-                android:textColor="@color/list_item_color"
-                android:textSize="@dimen/list_item_size" />
-
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginRight="12dp"
-                android:background="#dadada" />
-    </RelativeLayout>
     <RelativeLayout
             android:id="@+id/re_pay_history"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
             android:clickable="true"
-            android:paddingLeft="12dp" >
+            android:paddingLeft="12dp">
+
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="12dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/my_more"/>
 
         <ImageView
                 android:id="@+id/iv_pay_history"
@@ -89,7 +135,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/my_pay"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -99,14 +145,14 @@
                 android:layout_toRightOf="@id/iv_pay_history"
                 android:text="支付记录"
                 android:textColor="@color/list_item_color"
-                android:textSize="@dimen/list_item_size" />
+                android:textSize="@dimen/list_item_size"/>
 
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="12dp"
-                android:background="#dadada" />
+                android:background="#dadada"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -115,7 +161,26 @@
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
             android:clickable="true"
-            android:paddingLeft="12dp" >
+            android:paddingLeft="12dp">
+
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="12dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/more"
+                android:background="@drawable/my_more"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@id/more"
+                android:text="未绑定"
+                android:textColor="@color/list_item_color"
+                android:textSize="12sp"/>
 
         <ImageView
                 android:id="@+id/iv_bind_hard"
@@ -124,7 +189,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/my_hard"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -134,14 +199,14 @@
                 android:layout_toRightOf="@id/iv_bind_hard"
                 android:text="硬件绑定"
                 android:textColor="@color/list_item_color"
-                android:textSize="@dimen/list_item_size" />
+                android:textSize="@dimen/list_item_size"/>
 
         <View
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="12dp"
-                android:background="#dadada" />
+                android:background="#dadada"/>
     </RelativeLayout>
     <RelativeLayout
             android:id="@+id/re_health_report"
@@ -149,7 +214,15 @@
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
             android:clickable="true"
-            android:paddingLeft="12dp" >
+            android:paddingLeft="12dp">
+
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="12dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/my_more"/>
 
         <ImageView
                 android:id="@+id/iv_health_report"
@@ -158,7 +231,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/my_helth"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -166,7 +239,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
                 android:layout_toRightOf="@id/iv_health_report"
-                android:text="健康报告"
+                android:text="健康报告查询"
                 android:textColor="@color/list_item_color"
                 android:textSize="@dimen/list_item_size"/>
         <View
@@ -174,7 +247,7 @@
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="12dp"
-                android:background="#dadada" />
+                android:background="#dadada"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -183,7 +256,15 @@
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
             android:clickable="true"
-            android:paddingLeft="12dp" >
+            android:paddingLeft="12dp">
+
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="12dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/my_more"/>
 
         <ImageView
                 android:id="@+id/iv_manger_doctor"
@@ -192,7 +273,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/my_doc"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -208,17 +289,18 @@
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="12dp"
-                android:background="#dadada" />
+                android:background="#dadada"/>
     </RelativeLayout>
 
 
     <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/re_noti_div"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@drawable/btn_list_item_bg"
             android:clickable="true"
-            android:paddingLeft="12dp" >
+            android:paddingLeft="12dp">
 
         <ImageView
                 android:id="@+id/iv_noti"
@@ -227,7 +309,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/ic_launcher"/>
 
         <TextView
                 android:layout_width="wrap_content"
@@ -243,7 +325,50 @@
                 android:layout_height="0.1dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="12dp"
-                android:background="#dadada" />
+                android:background="#dadada"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/re_setting"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_list_item_bg"
+            android:clickable="true"
+            android:paddingLeft="12dp">
+
+        <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="12dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/my_more"/>
+
+        <ImageView
+                android:id="@+id/iv_setting"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:src="@drawable/my_set"/>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/iv_setting"
+                android:text="设置"
+                android:textColor="@color/list_item_color"
+                android:textSize="@dimen/list_item_size"/>
+
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginRight="12dp"
+                android:background="#dadada"/>
     </RelativeLayout>
 
     <Button
@@ -253,10 +378,11 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/btn_register_bg"
+            android:background="@drawable/my_logbtn"
+            android:enabled="false"
             android:textColor="@android:color/white"
             android:gravity="center"
             android:textSize="18sp"
-            android:text="退出" />
+            android:text="退出"/>
 
 </LinearLayout>

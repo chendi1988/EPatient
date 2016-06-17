@@ -1,13 +1,11 @@
 package com.test.demo;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.*;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,16 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.test.adapters.AnimAdapterUtil;
-import com.test.baseactivity.BaseActivity;
 import com.test.fragments.Fragment01;
 import com.test.fragments.Fragment_Main_02;
 import com.test.fragments.Fragment_Main_03;
 import com.test.fragments.Fragment_Main_04;
-import com.test.utils.CheckFormatUtil;
 import com.test.utils.Contant;
 import com.test.utils.Util_SharedPreferences;
+import com.test.view.CustomDialog;
 
-public class MainActivity extends BaseActivity implements Fragment_Main_03.InitTab {
+public class MainActivity extends FragmentActivity implements Fragment_Main_03.LoginInterface {
     // 未读消息textview
     private TextView unreadLabel;
     // 未读通讯录textview
@@ -37,7 +34,7 @@ public class MainActivity extends BaseActivity implements Fragment_Main_03.InitT
 
     public Fragment01 fragment01;
 
-//    public Fragment_Main_01 homefragment;
+    //    public Fragment_Main_01 homefragment;
     private Fragment_Main_02 contactlistfragment;
     private Fragment_Main_03 findfragment;
     private Fragment_Main_04 profilefragment;
@@ -126,19 +123,8 @@ public class MainActivity extends BaseActivity implements Fragment_Main_03.InitT
                 titlemsg.setText("商城");
                 break;
             case R.id.re_find:
-
-                String phoneNum = Util_SharedPreferences.getInstance().getItemDataByKey(context, Contant.SP_USER, "phone");
-
-                if (!CheckFormatUtil.isPhoneNum(phoneNum)) {
-                    Intent intent = new Intent();
-                    intent.putExtra("target", Contant.START_PERSONAL_ACTIVITY);
-                    intent.setClass(context, LoginActivity.class);
-                    startActivityForResult(intent, 0);
-                    AnimAdapterUtil.anim_translate_next(context);
-                } else {
-                    index = 2;
-                    titlemsg.setText("我的");
-                }
+                index = 2;
+                titlemsg.setText("我的");
                 break;
             case R.id.re_profile:
                 index = 3;
@@ -183,24 +169,8 @@ public class MainActivity extends BaseActivity implements Fragment_Main_03.InitT
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == 1) {
-            index = 2;
-            titlemsg.setText("我的");
-
-            if (currentTabIndex != index) {
-                FragmentTransaction trx = getSupportFragmentManager()
-                        .beginTransaction();
-                trx.hide(fragments[currentTabIndex]);
-                if (!fragments[index].isAdded()) {
-                    trx.add(R.id.fragment_container, fragments[index]);
-                }
-                trx.show(fragments[index]).commit();
-            }
-            imagebuttons[currentTabIndex].setSelected(false);
-            // 把当前tab设为选中状态
-            imagebuttons[index].setSelected(true);
-            textviews[currentTabIndex].setTextColor(0xFF999999);
-            textviews[index].setTextColor(0xFF45C01A);
-            currentTabIndex = index;
+            //登录成功
+            findfragment.initViewData();
         }
     }
 
@@ -226,28 +196,29 @@ public class MainActivity extends BaseActivity implements Fragment_Main_03.InitT
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void initTab() {
 
-        index = 0;
-
-        if (currentTabIndex != index) {
-            FragmentTransaction trx = getSupportFragmentManager()
-                    .beginTransaction();
-            trx.hide(fragments[currentTabIndex]);
-            if (!fragments[index].isAdded()) {
-                trx.add(R.id.fragment_container, fragments[index]);
-            }
-            trx.show(fragments[index]).commit();
-        }
-        imagebuttons[currentTabIndex].setSelected(false);
-        // 把当前tab设为选中状态
-        imagebuttons[index].setSelected(true);
-        textviews[currentTabIndex].setTextColor(0xFF999999);
-        textviews[index].setTextColor(0xFF45C01A);
-        currentTabIndex = index;
-
-    }
+//    @Override
+//    public void initTab() {
+//
+//        index = 0;
+//
+//        if (currentTabIndex != index) {
+//            FragmentTransaction trx = getSupportFragmentManager()
+//                    .beginTransaction();
+//            trx.hide(fragments[currentTabIndex]);
+//            if (!fragments[index].isAdded()) {
+//                trx.add(R.id.fragment_container, fragments[index]);
+//            }
+//            trx.show(fragments[index]).commit();
+//        }
+//        imagebuttons[currentTabIndex].setSelected(false);
+//        // 把当前tab设为选中状态
+//        imagebuttons[index].setSelected(true);
+//        textviews[currentTabIndex].setTextColor(0xFF999999);
+//        textviews[index].setTextColor(0xFF45C01A);
+//        currentTabIndex = index;
+//
+//    }
 
     public void initTab0(int index1) {
 
@@ -267,6 +238,69 @@ public class MainActivity extends BaseActivity implements Fragment_Main_03.InitT
         textviews[currentTabIndex].setTextColor(0xFF999999);
         textviews[index].setTextColor(0xFF45C01A);
         currentTabIndex = index;
+
+    }
+
+    @Override
+    public void needLogin() {
+
+        showAlertDialog(1);
+
+    }
+
+    @Override
+    public void loginOut() {
+
+        showAlertDialog(0);
+
+    }
+
+    @Override
+    public void startLogin() {
+
+        Intent intent = new Intent();
+        intent.putExtra("target", Contant.START_PERSONAL_ACTIVITY);
+        intent.setClass(context, LoginActivity.class);
+        startActivityForResult(intent, 0);
+        AnimAdapterUtil.anim_translate_next(context);
+
+
+    }
+
+    public void showAlertDialog(int type) {
+
+        CustomDialog.Builder builder = new CustomDialog.Builder(this);
+        builder.setTitle("提示");
+        if (type == 1) {
+            builder.setMessage("先登录才能查询相关数据");
+            builder.setPositiveButton("登录", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    //设置你的操作事项
+                    startLogin();
+                }
+            });
+        } else if (type == 0) {
+            builder.setMessage("是否退出？");
+            builder.setPositiveButton("退出", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    //设置你的操作事项
+                    Util_SharedPreferences.getInstance().clearData(context, Contant.SP_USER);
+                    findfragment.initViewData();
+                }
+            });
+
+        }
+
+        builder.setNegativeButton("取消",
+                new android.content.DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+        builder.create().show();
 
     }
 
@@ -292,6 +326,7 @@ public class MainActivity extends BaseActivity implements Fragment_Main_03.InitT
             }
         }
     }
+
 
     @Override
     protected void onDestroy() {
