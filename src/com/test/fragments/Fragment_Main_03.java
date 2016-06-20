@@ -103,28 +103,41 @@ public class Fragment_Main_03 extends Fragment implements View.OnClickListener {
             return;
         }
 
-        Intent intent = new Intent();
+        Intent intent;
         switch (v.getId()) {
             case R.id.re_personal_info:
+                intent = new Intent();
                 intent.setClass(getActivity(), PersonalInfos.class);
                 getActivity().startActivity(intent);
                 AnimAdapterUtil.anim_translate_next(getActivity());
                 break;
             case R.id.re_setting:
+                intent = new Intent();
                 intent.setClass(getActivity(), SettingActivity.class);
                 getActivity().startActivity(intent);
                 AnimAdapterUtil.anim_translate_next(getActivity());
                 break;
             case R.id.re_pay_history:
+                intent = new Intent();
+                intent.putExtra("phone",Util_SharedPreferences.getInstance().getItemDataByKey(getActivity(),Contant.SP_USER,"phone"));
+                intent.setClass(getActivity(), PayHistoryList.class);
+                getActivity().startActivity(intent);
+                AnimAdapterUtil.anim_translate_next(getActivity());
+
                 break;
             case R.id.re_bind_hard:
-
+                intent = new Intent();
                 intent.setClass(getActivity(), CaptureActivity.class);
                 getActivity().startActivity(intent);
                 AnimAdapterUtil.anim_translate_next(getActivity());
 
                 break;
             case R.id.re_health_report:
+                intent = new Intent();
+                intent.setClass(getActivity(), HealthListActivity.class);
+                getActivity().startActivity(intent);
+                AnimAdapterUtil.anim_translate_next(getActivity());
+
                 break;
             case R.id.re_manger_doctor:
                 break;

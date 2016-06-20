@@ -35,4 +35,7 @@
     <dimen name="go_back_w">20dp</dimen>
     <dimen name="go_back_h">20dp</dimen>
     <dimen name="go_back_margin_left">15dp</dimen>
+
+
+    <dimen name="pay_history_item_margin_top">10dp</dimen>
 </resources>

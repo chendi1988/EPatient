@@ -100,7 +100,7 @@ public class Fragment_Main_02 extends Fragment {
 
         mHandler = new Handler();
 
-        new TaskLoadMore(1).execute();
+        new TaskLoadMoreGoods(1).execute();
 
         return view;
     }
@@ -123,14 +123,14 @@ public class Fragment_Main_02 extends Fragment {
 
             tag = false;
             list.clear();
-            new TaskLoadMore(1).execute();
+            new TaskLoadMoreGoods(1).execute();
 
         }
 
         @Override
         public void onLoadMore() {
 
-            new TaskLoadMore(list != null ? list.size() + 1 : 1).execute();
+            new TaskLoadMoreGoods(list != null ? list.size() + 1 : 1).execute();
 
         }
     };
@@ -148,12 +148,12 @@ public class Fragment_Main_02 extends Fragment {
     }
 
 
-    class TaskLoadMore extends AsyncTask<Void, Void, String> {
+    class TaskLoadMoreGoods extends AsyncTask<Void, Void, String> {
 
         Map<String, String> map_more;
         long start = 0;
 
-        public TaskLoadMore(int index) {
+        public TaskLoadMoreGoods(int index) {
             map_more = new HashMap<String, String>();
             map_more.put("index", index + "");
         }

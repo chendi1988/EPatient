@@ -100,7 +100,8 @@ public class MainActivity extends FragmentActivity implements Fragment_Main_03.L
         textviews[1] = (TextView) findViewById(R.id.tv_contact_list);
         textviews[2] = (TextView) findViewById(R.id.tv_find);
         textviews[3] = (TextView) findViewById(R.id.tv_profile);
-        textviews[0].setTextColor(0xFF45C01A);
+//        textviews[0].setTextColor(0xFF45C01A);
+        textviews[0].setTextColor(context.getResources().getColor(R.color.drop_down_selected));
         // 添加显示第一个fragment
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, fragment01)
@@ -146,7 +147,8 @@ public class MainActivity extends FragmentActivity implements Fragment_Main_03.L
         // 把当前tab设为选中状态
         imagebuttons[index].setSelected(true);
         textviews[currentTabIndex].setTextColor(0xFF999999);
-        textviews[index].setTextColor(0xFF45C01A);
+//        textviews[index].setTextColor(0xFF45C01A);
+        textviews[index].setTextColor(context.getResources().getColor(R.color.drop_down_selected));
         currentTabIndex = index;
 
     }

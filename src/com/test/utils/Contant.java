@@ -50,6 +50,10 @@ public class Contant {
     //名医
     public static final String URL_MY = URL_HOST + "get_my";
 
+    //获取订单
+    public static final String URL_ORDER = URL_HOST + "getOrderList";
+
+
     //用戶信息保存
     public static final String SP_USER = "user.xml";
 

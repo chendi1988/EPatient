@@ -57,7 +57,7 @@
                 android:text="会员卡"
                 android:layout_centerVertical="true"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="@dimen/list_item_title_size"
                 />
 
         <TextView
@@ -67,6 +67,7 @@
                 android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
                 android:textColor="@color/color_money"
+                android:textSize="@dimen/list_item_title_size"
                 android:text="￥1000元"
                 />
 
@@ -74,11 +75,11 @@
 
     <TextView
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#666666"/>
+            android:background="#bababa"/>
 
     <TextView
             android:layout_marginLeft="10dp"
@@ -88,27 +89,27 @@
             android:layout_height="wrap_content"
             android:text="服务描述"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="@dimen/list_item_title_size"
             />
 
     <TextView
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#666666"/>
+            android:background="#bababa"/>
 
     <TextView
             android:id="@+id/detail"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="服务描述内容"
             android:textColor="#dd000000"
-            android:textSize="16sp"
+            android:textSize="@dimen/list_item_size"
     />
 
 </LinearLayout>

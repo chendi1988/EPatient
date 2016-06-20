@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+import com.test.adapters.AnimAdapterUtil;
 import com.test.demo.R;
 import com.zbar.lib.camera.CameraManager;
 import com.zbar.lib.decode.CaptureActivityHandler;
@@ -265,6 +266,12 @@ public class CaptureActivity extends Activity implements Callback {
             Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
             vibrator.vibrate(VIBRATE_DURATION);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        AnimAdapterUtil.anim_translate_back(this);
     }
 
     private final OnCompletionListener beepListener = new OnCompletionListener() {

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:background="#ffffff"
+                android:layout_height="fill_parent">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+        <TextView
+                android:id="@+id/money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:text="消费1000元"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/pay_history_item_margin_top"
+                android:layout_alignParentLeft="true"
+                android:textColor="#000000"/>
+
+        <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:text="2016-05-10 10:22"
+                android:layout_marginTop="@dimen/pay_history_item_margin_top"
+                android:layout_alignParentRight="true"
+                android:textColor="#000000"/>
+
+        <TextView
+                android:id="@+id/descption"
+                android:layout_below="@id/money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:text="会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述会员卡描述"
+                android:layout_marginTop="@dimen/pay_history_item_margin_top"
+                android:layout_alignParentRight="true"
+                android:textColor="#000000"/>
+
+        <TextView
+                android:layout_below="@id/descption"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/pay_history_item_margin_top"
+                android:layout_height="1px"
+                android:background="#bababa"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

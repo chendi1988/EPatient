@@ -209,7 +209,7 @@ public class Fragment01 extends Fragment {
             @Override
             public void onLoadMore() {
 
-                new TaskLoadMore(datas == null ? 1 : datas.size() + 1, false).execute();
+                new TaskLoadMoreDoc(datas == null ? 1 : datas.size() + 1, false).execute();
 
             }
         });
@@ -254,16 +254,16 @@ public class Fragment01 extends Fragment {
             }
         });
 
-        new TaskLoadMore(1, true).execute();
+        new TaskLoadMoreDoc(1, true).execute();
 
     }
 
     private void setFilter(boolean showDialog) {
         datas.clear();
-        new TaskLoadMore(1, showDialog).execute();
+        new TaskLoadMoreDoc(1, showDialog).execute();
     }
 
-    class TaskLoadMore extends AsyncTask<Void, Void, String> {
+    class TaskLoadMoreDoc extends AsyncTask<Void, Void, String> {
 
         long start = 0;
 
@@ -273,7 +273,7 @@ public class Fragment01 extends Fragment {
 
         DialogLoading loading;
 
-        public TaskLoadMore(int index, boolean showDialog) {
+        public TaskLoadMoreDoc(int index, boolean showDialog) {
             map_more = new HashMap<String, String>();
             map_more.put("index", index + "");
             map_more.put("dq", dq);
