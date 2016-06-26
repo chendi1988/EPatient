@@ -22,7 +22,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/my_faceback">
 
-            <com.test.view.RoundCornerImageView
+            <com.bean.view.MyCircleImageView
                     android:id="@+id/header"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="何医生(心内科) 主任医师"
+                    android:text="何医生"
                     android:textSize="16sp"
                     android:textColor="#ffffff"/>
 
@@ -68,6 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="西安高新医院"
+                    android:visibility="gone"
                     android:textSize="14sp"
                     android:textColor="#ffffff"/>
 

@@ -12,21 +12,16 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import cn.jpush.android.api.*;
+import com.bean.yihuanton.R;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-import cn.jpush.android.api.BasicPushNotificationBuilder;
-import cn.jpush.android.api.CustomPushNotificationBuilder;
-import cn.jpush.android.api.InstrumentedActivity;
-import cn.jpush.android.api.JPushInterface;
- import  com.test.demo.R;
-import cn.jpush.android.api.TagAliasCallback;
-
 
 public class PushSetActivity extends InstrumentedActivity implements OnClickListener {
     private static final String TAG = "JPush";
-    
+
 	Button mSetTag;
 	Button mSetAlias;
 	Button mStyleBasic;

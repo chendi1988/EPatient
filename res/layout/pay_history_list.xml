@@ -31,7 +31,7 @@
                 android:layout_marginLeft="@dimen/go_back_margin_left"/>
     </RelativeLayout>
 
-    <com.test.view.XListView
+    <com.bean.view.XListView
             android:layout_below="@id/title"
             android:id="@+id/xListView"
             android:layout_width="match_parent"

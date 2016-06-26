@@ -5,7 +5,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import com.test.demo.R;
+import com.bean.yihuanton.R;
 import com.zbar.lib.CaptureActivity;
 import com.zbar.lib.ZbarManager;
 import com.zbar.lib.bitmap.PlanarYUVLuminanceSource;

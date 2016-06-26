@@ -5,7 +5,7 @@
               android:background="#ffffff"
               android:orientation="vertical"
 >
-<com.test.view.DropDownMenu1
+<com.bean.view.DropDownMenu1
     android:id="@+id/dropDownMenu"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,7 +22,7 @@
     app:ddmenuUnselectedIcon="@mipmap/drop_down_unselected_icon"
   />
 
-    <!--<com.test.view.XListView-->
+    <!--<XListView-->
     <!--android:id="@+id/xListView"-->
     <!--android:layout_width="match_parent"-->
     <!--android:cacheColorHint="#00000000"-->

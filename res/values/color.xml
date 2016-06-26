@@ -34,4 +34,7 @@
     <color name="default_menu_press_text">#000000</color>
     <color name="default_menu_text">#00cf9b</color>
     <color name="divider">#6f19f1</color>
+
+    <color name="list_item_nomal">#ffffff</color>
+    <color name="list_item_seleted">#bababa</color>
 </resources>

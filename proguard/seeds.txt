@@ -1,0 +1,249 @@
+android.support.v4.app.BackStackState
+android.support.v4.app.BackStackState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.Fragment$SavedState
+android.support.v4.app.Fragment$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentManagerState
+android.support.v4.app.FragmentManagerState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentState
+android.support.v4.app.FragmentState: android.os.Parcelable$Creator CREATOR
+android.support.v4.app.FragmentTabHost: void setOnTabChangedListener(android.widget.TabHost$OnTabChangeListener)
+android.support.v4.app.FragmentTabHost$SavedState
+android.support.v4.app.FragmentTabHost$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status[] values()
+android.support.v4.content.ModernAsyncTask$Status: android.support.v4.content.ModernAsyncTask$Status valueOf(java.lang.String)
+android.support.v4.media.MediaDescriptionCompat
+android.support.v4.media.MediaDescriptionCompat: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.MediaMetadataCompat
+android.support.v4.media.MediaMetadataCompat: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.RatingCompat
+android.support.v4.media.RatingCompat: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.MediaSessionCompat$QueueItem
+android.support.v4.media.session.MediaSessionCompat$QueueItem: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.MediaSessionCompat$ResultReceiverWrapper
+android.support.v4.media.session.MediaSessionCompat$ResultReceiverWrapper: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.MediaSessionCompat$Token
+android.support.v4.media.session.MediaSessionCompat$Token: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.ParcelableVolumeInfo
+android.support.v4.media.session.ParcelableVolumeInfo: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.PlaybackStateCompat
+android.support.v4.media.session.PlaybackStateCompat: android.os.Parcelable$Creator CREATOR
+android.support.v4.media.session.PlaybackStateCompat$CustomAction
+android.support.v4.media.session.PlaybackStateCompat$CustomAction: android.os.Parcelable$Creator CREATOR
+android.support.v4.view.PagerTabStrip: void setTabIndicatorColor(int)
+android.support.v4.view.PagerTabStrip: void setTabIndicatorColorResource(int)
+android.support.v4.view.PagerTabStrip: int getTabIndicatorColor()
+android.support.v4.view.PagerTabStrip: void setTextSpacing(int)
+android.support.v4.view.PagerTabStrip: void setBackgroundDrawable(android.graphics.drawable.Drawable)
+android.support.v4.view.PagerTabStrip: void setBackgroundColor(int)
+android.support.v4.view.PagerTabStrip: void setBackgroundResource(int)
+android.support.v4.view.PagerTabStrip: void setDrawFullUnderline(boolean)
+android.support.v4.view.PagerTabStrip: boolean getDrawFullUnderline()
+android.support.v4.view.PagerTabStrip: int getMinHeight()
+android.support.v4.view.PagerTitleStrip: void setSingleLineAllCaps(android.widget.TextView)
+android.support.v4.view.PagerTitleStrip: void setTextSpacing(int)
+android.support.v4.view.PagerTitleStrip: int getTextSpacing()
+android.support.v4.view.PagerTitleStrip: void setNonPrimaryAlpha(float)
+android.support.v4.view.PagerTitleStrip: void setTextColor(int)
+android.support.v4.view.PagerTitleStrip: void setGravity(int)
+android.support.v4.view.PagerTitleStrip: int getMinHeight()
+android.support.v4.view.ViewPager: void setScrollState(int)
+android.support.v4.view.ViewPager: void setAdapter(android.support.v4.view.PagerAdapter)
+android.support.v4.view.ViewPager: android.support.v4.view.PagerAdapter getAdapter()
+android.support.v4.view.ViewPager: void setOnAdapterChangeListener(android.support.v4.view.ViewPager$OnAdapterChangeListener)
+android.support.v4.view.ViewPager: int getClientWidth()
+android.support.v4.view.ViewPager: void setCurrentItem(int)
+android.support.v4.view.ViewPager: int getCurrentItem()
+android.support.v4.view.ViewPager: void setOnPageChangeListener(android.support.v4.view.ViewPager$OnPageChangeListener)
+android.support.v4.view.ViewPager: void setChildrenDrawingOrderEnabledCompat(boolean)
+android.support.v4.view.ViewPager: int getOffscreenPageLimit()
+android.support.v4.view.ViewPager: void setOffscreenPageLimit(int)
+android.support.v4.view.ViewPager: void setPageMargin(int)
+android.support.v4.view.ViewPager: int getPageMargin()
+android.support.v4.view.ViewPager: void setPageMarginDrawable(android.graphics.drawable.Drawable)
+android.support.v4.view.ViewPager: void setPageMarginDrawable(int)
+android.support.v4.view.ViewPager: void setScrollingCacheEnabled(boolean)
+android.support.v4.view.ViewPager$SavedState
+android.support.v4.view.ViewPager$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.DrawerLayout: void setScrimColor(int)
+android.support.v4.widget.DrawerLayout: void setDrawerListener(android.support.v4.widget.DrawerLayout$DrawerListener)
+android.support.v4.widget.DrawerLayout: void setDrawerLockMode(int)
+android.support.v4.widget.DrawerLayout: void setStatusBarBackground(android.graphics.drawable.Drawable)
+android.support.v4.widget.DrawerLayout: android.graphics.drawable.Drawable getStatusBarBackgroundDrawable()
+android.support.v4.widget.DrawerLayout: void setStatusBarBackground(int)
+android.support.v4.widget.DrawerLayout: void setStatusBarBackgroundColor(int)
+android.support.v4.widget.DrawerLayout$SavedState
+android.support.v4.widget.DrawerLayout$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.NestedScrollView: void setNestedScrollingEnabled(boolean)
+android.support.v4.widget.NestedScrollView: int getNestedScrollAxes()
+android.support.v4.widget.NestedScrollView: float getTopFadingEdgeStrength()
+android.support.v4.widget.NestedScrollView: float getBottomFadingEdgeStrength()
+android.support.v4.widget.NestedScrollView: int getMaxScrollAmount()
+android.support.v4.widget.NestedScrollView: void setFillViewport(boolean)
+android.support.v4.widget.NestedScrollView: void setSmoothScrollingEnabled(boolean)
+android.support.v4.widget.NestedScrollView: float getVerticalScrollFactorCompat()
+android.support.v4.widget.NestedScrollView: int getScrollRange()
+android.support.v4.widget.NestedScrollView$SavedState
+android.support.v4.widget.NestedScrollView$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.SlidingPaneLayout: void setParallaxDistance(int)
+android.support.v4.widget.SlidingPaneLayout: int getParallaxDistance()
+android.support.v4.widget.SlidingPaneLayout: void setSliderFadeColor(int)
+android.support.v4.widget.SlidingPaneLayout: int getSliderFadeColor()
+android.support.v4.widget.SlidingPaneLayout: void setCoveredFadeColor(int)
+android.support.v4.widget.SlidingPaneLayout: int getCoveredFadeColor()
+android.support.v4.widget.SlidingPaneLayout: void setPanelSlideListener(android.support.v4.widget.SlidingPaneLayout$PanelSlideListener)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawable(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawableLeft(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowDrawableRight(android.graphics.drawable.Drawable)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResource(int)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResourceLeft(int)
+android.support.v4.widget.SlidingPaneLayout: void setShadowResourceRight(int)
+android.support.v4.widget.SlidingPaneLayout$SavedState
+android.support.v4.widget.SlidingPaneLayout$SavedState: android.os.Parcelable$Creator CREATOR
+android.support.v4.widget.SwipeRefreshLayout: void setColorViewAlpha(int)
+android.support.v4.widget.SwipeRefreshLayout: void setSize(int)
+android.support.v4.widget.SwipeRefreshLayout: void setOnRefreshListener(android.support.v4.widget.SwipeRefreshLayout$OnRefreshListener)
+android.support.v4.widget.SwipeRefreshLayout: void setRefreshing(boolean)
+android.support.v4.widget.SwipeRefreshLayout: void setAnimationProgress(float)
+android.support.v4.widget.SwipeRefreshLayout: void setProgressBackgroundColor(int)
+android.support.v4.widget.SwipeRefreshLayout: void setProgressBackgroundColorSchemeResource(int)
+android.support.v4.widget.SwipeRefreshLayout: void setProgressBackgroundColorSchemeColor(int)
+android.support.v4.widget.SwipeRefreshLayout: void setColorScheme(int[])
+android.support.v4.widget.SwipeRefreshLayout: void setColorSchemeResources(int[])
+android.support.v4.widget.SwipeRefreshLayout: void setColorSchemeColors(int[])
+android.support.v4.widget.SwipeRefreshLayout: void setDistanceToTriggerSync(int)
+android.support.v4.widget.SwipeRefreshLayout: int getProgressCircleDiameter()
+com.app.mhealth.R$dimen: int activity_horizontal_margin
+com.app.mhealth.R$dimen: int activity_vertical_margin
+com.app.mhealth.R$drawable: int ic_launcher
+com.app.mhealth.R$id: int button_login
+com.app.mhealth.R$id: int button_record_start
+com.app.mhealth.R$id: int button_record_stop
+com.app.mhealth.R$id: int button_register
+com.app.mhealth.R$id: int button_select_bt
+com.app.mhealth.R$id: int ecgBrowser
+com.app.mhealth.R$id: int editAddress
+com.app.mhealth.R$id: int editAddress_title
+com.app.mhealth.R$id: int editAge
+com.app.mhealth.R$id: int editAge_title
+com.app.mhealth.R$id: int editAppeal
+com.app.mhealth.R$id: int editAppeal_title
+com.app.mhealth.R$id: int editCId_title
+com.app.mhealth.R$id: int editCid
+com.app.mhealth.R$id: int editEmail
+com.app.mhealth.R$id: int editEmail_title
+com.app.mhealth.R$id: int editHeartDisease
+com.app.mhealth.R$id: int editHeartDisease_title
+com.app.mhealth.R$id: int editHeight
+com.app.mhealth.R$id: int editHeight_title
+com.app.mhealth.R$id: int editMedicalHistory
+com.app.mhealth.R$id: int editMedicalHistory_title
+com.app.mhealth.R$id: int editName
+com.app.mhealth.R$id: int editName_title
+com.app.mhealth.R$id: int editOpenId
+com.app.mhealth.R$id: int editOpenId_title
+com.app.mhealth.R$id: int editPhone
+com.app.mhealth.R$id: int editPhone_title
+com.app.mhealth.R$id: int editSex
+com.app.mhealth.R$id: int editSex_title
+com.app.mhealth.R$id: int editWeight
+com.app.mhealth.R$id: int editWeight_title
+com.app.mhealth.R$id: int label_counter
+com.app.mhealth.R$id: int label_counter_title
+com.app.mhealth.R$id: int label_gain
+com.app.mhealth.R$id: int label_heartrate_name
+com.app.mhealth.R$id: int label_heartrate_realtime
+com.app.mhealth.R$id: int label_result
+com.app.mhealth.R$id: int label_result_title
+com.app.mhealth.R$id: int label_rr_name
+com.app.mhealth.R$id: int label_rr_value
+com.app.mhealth.R$id: int label_speed
+com.app.mhealth.R$id: int linear1
+com.app.mhealth.R$id: int linearLayout2
+com.app.mhealth.R$id: int linearLayout_input_id
+com.app.mhealth.R$id: int login_button
+com.app.mhealth.R$id: int register_button
+com.app.mhealth.R$id: int set_screen_10_0
+com.app.mhealth.R$id: int set_screen_12_0
+com.app.mhealth.R$id: int set_screen_3_5
+com.app.mhealth.R$id: int set_screen_4_0
+com.app.mhealth.R$id: int set_screen_4_3
+com.app.mhealth.R$id: int set_screen_4_7
+com.app.mhealth.R$id: int set_screen_5_0
+com.app.mhealth.R$id: int set_screen_5_5
+com.app.mhealth.R$id: int set_screen_6_0
+com.app.mhealth.R$id: int set_screen_7_0
+com.app.mhealth.R$id: int set_screen_8_0
+com.app.mhealth.R$id: int set_screen_9_0
+com.app.mhealth.R$id: int title
+com.app.mhealth.R$layout: int activity_ecg_demo
+com.app.mhealth.R$layout: int activity_ecg_sdk_demo_login
+com.app.mhealth.R$layout: int activity_ecg_sdk_demo_register
+com.app.mhealth.R$layout: int relative_layout_2
+com.app.mhealth.R$menu: int ecg_sdk_demo
+com.app.mhealth.R$style: int AppBaseTheme
+com.app.mhealth.R$style: int AppTheme
+com.app.mhealth.R$xml: int device_filter
+com.b.a.e$a: com.b.a.e$a[] values()
+com.b.a.e$a: com.b.a.e$a valueOf(java.lang.String)
+com.b.c.o$a: com.b.c.o$a[] values()
+com.b.c.o$a: com.b.c.o$a valueOf(java.lang.String)
+com.b.d.a.b$a: com.b.d.a.b$a[] values()
+com.b.d.a.b$a: com.b.d.a.b$a valueOf(java.lang.String)
+com.b.d.a.b$b: com.b.d.a.b$b[] values()
+com.b.d.a.b$b: com.b.d.a.b$b valueOf(java.lang.String)
+com.mhealth365.a.c: void setDegree(int)
+com.mhealth365.a.c: void setValue(int)
+com.mhealth365.b.a$a: com.mhealth365.b.a$a[] values()
+com.mhealth365.b.a$a: com.mhealth365.b.a$a valueOf(java.lang.String)
+com.mhealth365.ecgsdkdemo.App
+com.mhealth365.ecgsdkdemo.App: App()
+com.mhealth365.ecgsdkdemo.EcgSdkDemo
+com.mhealth365.ecgsdkdemo.EcgSdkDemo: EcgSdkDemo()
+com.mhealth365.ecgsdkdemo.LoginActivity
+com.mhealth365.ecgsdkdemo.LoginActivity: LoginActivity()
+com.mhealth365.ecgsdkdemo.RegisterActivity
+com.mhealth365.ecgsdkdemo.RegisterActivity: RegisterActivity()
+com.mhealth365.osdk.EcgOpenApiCallback$LOGIN_FAIL_MSG: com.mhealth365.osdk.EcgOpenApiCallback$LOGIN_FAIL_MSG[] values()
+com.mhealth365.osdk.EcgOpenApiCallback$LOGIN_FAIL_MSG: com.mhealth365.osdk.EcgOpenApiCallback$LOGIN_FAIL_MSG valueOf(java.lang.String)
+com.mhealth365.osdk.EcgOpenApiCallback$RECORD_FAIL_MSG: com.mhealth365.osdk.EcgOpenApiCallback$RECORD_FAIL_MSG[] values()
+com.mhealth365.osdk.EcgOpenApiCallback$RECORD_FAIL_MSG: com.mhealth365.osdk.EcgOpenApiCallback$RECORD_FAIL_MSG valueOf(java.lang.String)
+com.mhealth365.osdk.EcgOpenApiHelper$RECORD_MODE: com.mhealth365.osdk.EcgOpenApiHelper$RECORD_MODE[] values()
+com.mhealth365.osdk.EcgOpenApiHelper$RECORD_MODE: com.mhealth365.osdk.EcgOpenApiHelper$RECORD_MODE valueOf(java.lang.String)
+com.mhealth365.osdk.UserInfo$HEART_DISEASE: com.mhealth365.osdk.UserInfo$HEART_DISEASE[] values()
+com.mhealth365.osdk.UserInfo$HEART_DISEASE: com.mhealth365.osdk.UserInfo$HEART_DISEASE valueOf(java.lang.String)
+com.mhealth365.osdk.UserInfo$SEX: com.mhealth365.osdk.UserInfo$SEX[] values()
+com.mhealth365.osdk.UserInfo$SEX: com.mhealth365.osdk.UserInfo$SEX valueOf(java.lang.String)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: RealTimeEcgBrowser(android.content.Context)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: RealTimeEcgBrowser(android.content.Context,android.util.AttributeSet)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: RealTimeEcgBrowser(android.content.Context,android.util.AttributeSet,int)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: void setEcgBrowserInteractive(com.mhealth365.osdk.ecgbrowser.EcgBrowserInteractive)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: void setBackgroundColor(int)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: void setScreenDPI(float)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: void setOpenTouch(boolean)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: void setSample(int)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: void setEcgColor(int)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: void setTagColor(int)
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: float getNewChannelWidth()
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: android.graphics.Rect getRect()
+com.mhealth365.osdk.ecgbrowser.RealTimeEcgBrowser: float getDisplayDPI()
+com.mhealth365.osdk.ecgbrowser.d: java.lang.String getName()
+com.mhealth365.osdk.ecgbrowser.d: d(android.content.Context)
+com.mhealth365.osdk.ecgbrowser.d: d(android.content.Context,android.util.AttributeSet)
+com.mhealth365.osdk.ecgbrowser.d: d(android.content.Context,android.util.AttributeSet,int)
+com.mhealth365.osdk.ecgbrowser.d: void setIsTop(boolean)
+com.mhealth365.osdk.ecgbrowser.d: void setShowFPS(boolean)
+com.mhealth365.osdk.ecgbrowser.d: long getmFramePerSec()
+com.mhealth365.osdk.ecgbrowser.d: void setFPS(long)
+com.mhealth365.osdk.ecgbrowser.d: float getFPS()
+com.mhealth365.osdk.ecgbrowser.d: void setName(java.lang.String)
+test.com.TestCallEcgActivity
+test.com.TestCallEcgActivity: void ECG_init(int)
+test.com.TestCallEcgActivity: void ECG_Ana_init()
+test.com.TestCallEcgActivity: java.lang.String ECG_getVersion()
+test.com.TestCallEcgActivity: void ECG_Filter_init()
+test.com.TestCallEcgActivity: short[] ECG_Sink_Filter(short[])
+test.com.TestCallEcgActivity: short[] ECG_Filter_Notch_60Hz(short[])
+test.com.TestCallEcgActivity: short[] ECG_main_proc(short[])
+test.com.TestCallEcgActivity$a: test.com.TestCallEcgActivity$a[] values()
+test.com.TestCallEcgActivity$a: test.com.TestCallEcgActivity$a valueOf(java.lang.String)

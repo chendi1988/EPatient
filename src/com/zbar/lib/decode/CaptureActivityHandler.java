@@ -2,7 +2,7 @@ package com.zbar.lib.decode;
 
 import android.os.Handler;
 import android.os.Message;
-import com.test.demo.R;
+import com.bean.yihuanton.R;
 import com.zbar.lib.CaptureActivity;
 import com.zbar.lib.camera.CameraManager;
 

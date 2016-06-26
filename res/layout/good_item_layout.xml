@@ -13,6 +13,7 @@
             android:layout_height="60dp"
             android:layout_margin="10dp"
             android:scaleType="centerCrop"
+            android:background="@drawable/default_img_bg_lg"
     />
     <RelativeLayout
             android:layout_toRightOf="@id/photo"

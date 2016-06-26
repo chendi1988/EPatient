@@ -12,13 +12,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import cn.jpush.android.api.InstrumentedActivity;
+import cn.jpush.android.api.JPushInterface;
+import com.bean.yihuanton.R;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import cn.jpush.android.api.InstrumentedActivity;
-import cn.jpush.android.api.JPushInterface;
- import  com.test.demo.R;
 
 public class SettingActivity extends InstrumentedActivity implements OnClickListener {
 	TimePicker startTime;

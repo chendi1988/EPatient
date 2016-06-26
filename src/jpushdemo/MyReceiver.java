@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import cn.jpush.android.api.JPushInterface;
-import com.test.demo.LogoActivity;
+import com.bean.yihuanton.LogoActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 
